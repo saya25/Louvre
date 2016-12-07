@@ -1,0 +1,21 @@
+{# src/saya25/LouvreBundle/Resources/views/Advert/coordonnees.html.twig #}
+
+{% extends "saya25LouvreBundle::layout.html.twig" %}
+
+{% block saya25blog_body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href=" {{  path('saya25_louvre_billetterie') }}">Billetterie</a></li></li>
+        <li class="breadcrumb-item active">Coordonnées</li>
+        <li class="breadcrumb-item"><a href=" {{  path('saya25_louvre_paiement') }}">Paiement</a></li>
+        <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
+    </ol>
+
+    <div>
+    	<h1>Vos informations personnelles</h1> 
+    </div>
+    <div>
+ 		<h1>Récapitulatif</h1>
+	</div>
+	
+{% endblock %}

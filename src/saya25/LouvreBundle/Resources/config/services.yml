@@ -1,0 +1,4 @@
+services:
+#    saya25_louvre.example:
+#        class: saya25\LouvreBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

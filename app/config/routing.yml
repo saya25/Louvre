@@ -1,0 +1,4 @@
+saya25_louvre:
+    resource: "@saya25LouvreBundle/Resources/config/routing.yml"
+    prefix:   /louvre
+

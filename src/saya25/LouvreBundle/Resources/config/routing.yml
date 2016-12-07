@@ -1,0 +1,20 @@
+saya25_louvre_accueil :
+    path:     /accueil
+    defaults: { _controller: saya25LouvreBundle:Ticket:accueil }
+
+saya25_louvre_billetterie :
+    path:     /billetterie
+    defaults: { _controller: saya25LouvreBundle:Ticket:billetterie}
+
+saya25_louvre_coordonnees :
+    path:     /coordonnees
+    defaults: { _controller: saya25LouvreBundle:Ticket:coordonnees }
+
+saya25_louvre_paiement :
+    path:     /paiement
+    defaults: { _controller: saya25LouvreBundle:Ticket:paiement}
+
+saya25_louvre_confirmation :
+    path:     /confirmation
+    defaults: { _controller: saya25LouvreBundle:Ticket:confirmation}
+
