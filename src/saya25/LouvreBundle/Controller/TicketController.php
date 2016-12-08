@@ -24,6 +24,7 @@ class TicketController extends Controller
         $billet = new Billet();
         $form = $this->createForm(BilletType::class, $billet);
 
+
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($billet);

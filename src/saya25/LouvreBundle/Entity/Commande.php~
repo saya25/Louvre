@@ -35,6 +35,17 @@ class Commande
      */
     private $prenom;
 
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+
+
     /**
      * @var \DateTime
      *
@@ -61,9 +72,9 @@ class Commande
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="total", type="float")
      */
-    private $prix;
+    private $total;
 
 
 
@@ -210,29 +221,6 @@ class Commande
         return $this->numeroReservation;
     }
 
-    /**
-     * Set prix
-     *
-     * @param float $prix
-     *
-     * @return Commande
-     */
-    public function setPrix($prix)
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    /**
-     * Get prix
-     *
-     * @return float
-     */
-    public function getPrix()
-    {
-        return $this->prix;
-    }
 
     /**
      * Add billet
@@ -266,5 +254,29 @@ class Commande
     public function getBillet()
     {
         return $this->billet;
+    }
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     *
+     * @return Commande
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float
+     */
+    public function getTotal()
+    {
+        return $this->total;
     }
 }

@@ -20,6 +20,8 @@ class Billet
     CONST TARIF_ENFANT = 8;
     CONST TARIF_SENIOR = 12;
 
+    CONST ENFANT = 'Enfant';
+
 
     /**
      * @var int
@@ -297,4 +299,23 @@ class Billet
     {
         return $this->status;
     }
+
+
+    public function tarifBillet(Billet $billet)
+    {
+
+        $newBillet = $billet->getBillet();
+        $dateNaissance = $newBillet->getDateNaissance();
+
+        $dateInterval = $dateNaissance->diff(new \DateTime());
+
+
+        if ($dateInterval->age < 12) {
+            $billet->setPrix(Billet::TARIF_ENFANT);
+            return $this;
+
+        }
+    }
+
+
 }

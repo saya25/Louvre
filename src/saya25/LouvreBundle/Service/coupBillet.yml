@@ -1,9 +1,0 @@
-services:
-#    saya25.louvre.example:
-#        class:     saya25\LouvreBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
-#        calls:
-#            - [setService, ["@service_id"]]
-#        tags:
-#            - { name: twig.extension }
-#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

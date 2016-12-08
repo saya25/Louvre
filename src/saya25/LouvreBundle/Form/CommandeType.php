@@ -26,7 +26,7 @@ class CommandeType extends AbstractType
             ->add('pays',               CountryType::class)
             ->add('numeroReservation',  TextType::class)
             ->add('status',             ChoiceType::class)
-            ->add('prix',               NumberType::class);
+            ->add('total',               NumberType::class);
     }
     
     /**

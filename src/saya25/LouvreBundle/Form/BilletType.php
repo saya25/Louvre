@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,7 +34,7 @@ class BilletType extends AbstractType
             ->add('nom',            TextType::class)
             ->add('prenom',         TextType::class)
             ->add('pays',           CountryType::class)
-            ->add('dateNaissance',  DateType::class)
+            ->add('dateNaissance',  BirthdayType::class)
             ->add('tarifReduit',    CheckboxType::class)
             ->add('prix',           NumberType::class)
             ->add('Ajouter',        SubmitType::class);

@@ -38,14 +38,15 @@
     var disableddates = ["25-12-2016", "01-05-2017", "01-11-2017", "25-12-2017"];
 
     function DisableSpecificDates(date) {
-    var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
-    return [disableddates.indexOf(string) == -1];
+        var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
+        return [disableddates.indexOf(string) == -1];
     }
 
-      $(function() {
-      $("#datepicker").datepicker({
-        beforeShowDay: DisableSpecificDates
-      });
+    $(function() {
+        $("#datepicker").datepicker({
+            beforeShowDay: DisableSpecificDates,
+            minDate : 0
+        });
     });
 
         $( function() {
@@ -69,12 +70,7 @@
           $.datepicker.setDefaults($.datepicker.regional['fr']);
       });
 
-     $("#datepicker").datepicker({
-         onSelect: function(dateText, inst) {
-             var dateAsString = dateText; //the first parameter of this function
-             var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
-         }
-     });
+
         </script>
 
         {{ include("saya25LouvreBundle:Ticket:form.html.twig") }}
