@@ -13,8 +13,6 @@
         <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
     </ol>
 
-      <p>Date: <input type="text" id="datepicker"></p>
-      <div>
           <h1>Finalisez votre réservation</h1>
       </div>
       <div class="recapitulatif">
@@ -43,14 +41,14 @@
     }
 
     $(function() {
-        $("#datepicker").datepicker({
+        $("#saya25_louvrebundle_billet_dateVisite").datepicker({
             beforeShowDay: DisableSpecificDates,
-            minDate : 0
+            minDate : 0,
         });
     });
 
         $( function() {
-          $( "#datepicker" ).datepicker();
+          $( "#saya25_louvrebundle_billet_dateVisite" ).datepicker();
            $.datepicker.regional['fr'] = {
         closeText: 'Fermer',
         prevText: 'Précédent',

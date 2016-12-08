@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
 
@@ -31,6 +32,10 @@ class BilletType extends AbstractType
                     'Demi-Journée'  => false,
                 ),
             ))
+            ->add('dateVisite',     TextType::class, array(
+            'label' => 'Date de la visite',
+                'attr' => array( 'class'   => 'test'),
+                ))
             ->add('nom',            TextType::class)
             ->add('prenom',         TextType::class)
             ->add('pays',           CountryType::class)

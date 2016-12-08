@@ -33,6 +33,15 @@ class Billet
     private $id;
 
 
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="date_visite", type="date")
+     */
+    private $dateVisite;
+
+
     /**
      * @var bool
      *
@@ -318,4 +327,28 @@ class Billet
     }
 
 
+
+    /**
+     * Set dateVisite
+     *
+     * @param \DateTime $dateVisite
+     *
+     * @return Billet
+     */
+    public function setDateVisite($dateVisite)
+    {
+        $this->dateVisite = $dateVisite;
+
+        return $this;
+    }
+
+    /**
+     * Get dateVisite
+     *
+     * @return \DateTime
+     */
+    public function getDateVisite()
+    {
+        return $this->dateVisite;
+    }
 }
