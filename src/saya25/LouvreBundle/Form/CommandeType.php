@@ -2,12 +2,13 @@
 
 namespace saya25\LouvreBundle\Form;
 
-use Doctrine\DBAL\Types\DateType;
-use Doctrine\DBAL\Types\TextType;
-use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,11 +23,8 @@ class CommandeType extends AbstractType
             ->add('nom',                TextType::class)
             ->add('prenom',             TextType::class)
             ->add('dateCommande',       DateType::class)
-            ->add('dateEntree',         DateType::class)
-            ->add('pays',               CountryType::class)
-            ->add('numeroReservation',  TextType::class)
-            ->add('status',             ChoiceType::class)
-            ->add('total',               NumberType::class);
+            ->add('Ajouter',        SubmitType::class);
+        ;
     }
     
     /**

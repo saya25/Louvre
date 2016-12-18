@@ -14,15 +14,6 @@ class Billet
 {
 
 
-    CONST TARIF_GRATUIT = 0;
-    CONST TARIF_REDUIT = 10;
-    CONST TARIF_NORMAL = 16;
-    CONST TARIF_ENFANT = 8;
-    CONST TARIF_SENIOR = 12;
-
-    CONST ENFANT = 'Enfant';
-
-
     /**
      * @var int
      *
@@ -95,7 +86,7 @@ class Billet
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float", nullable=false)
+     * @ORM\Column(name="prix", type="float", nullable=true)
      */
     private $prix;
 
@@ -351,4 +342,10 @@ class Billet
     {
         return $this->dateVisite;
     }
+
+
+
+
+
+
 }

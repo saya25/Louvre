@@ -2,7 +2,6 @@
 
 namespace saya25\LouvreBundle\Form;
 
-use saya25\LouvreBundle\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 
 
 
@@ -32,16 +32,19 @@ class BilletType extends AbstractType
                     'Demi-Journée'  => false,
                 ),
             ))
-            ->add('dateVisite',     TextType::class, array(
-            'label' => 'Date de la visite',
+            ->add('dateVisite',     DateType::class, array(
+                'label' => 'Date de la visite',
                 'attr' => array( 'class'   => 'test'),
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
                 ))
             ->add('nom',            TextType::class)
             ->add('prenom',         TextType::class)
             ->add('pays',           CountryType::class)
             ->add('dateNaissance',  BirthdayType::class)
-            ->add('tarifReduit',    CheckboxType::class)
-            ->add('prix',           NumberType::class)
+            ->add('tarifReduit',    CheckboxType::class, array(
+                'required'  => false,
+            ))
             ->add('Ajouter',        SubmitType::class);
 
 
@@ -67,4 +70,12 @@ class BilletType extends AbstractType
     }
 
 
+
+
+
 }
+
+
+
+
+

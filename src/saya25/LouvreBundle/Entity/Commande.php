@@ -3,12 +3,14 @@
 namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use saya25\LouvreBundle\Form\CommandeType;
 
 /**
  * Commande
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="saya25\LouvreBundle\Repository\CommandeRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commande
 {
@@ -40,7 +42,7 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
@@ -49,14 +51,14 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCommande", type="datetime")
+     * @ORM\Column(name="dateCommande", type="datetime", nullable=true)
      */
     private $dateCommande;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateEntree", type="datetime")
+     * @ORM\Column(name="dateEntree", type="datetime", nullable=true)
      */
     private $dateEntree;
 
@@ -64,7 +66,7 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="numeroReservation", type="string", length=255)
+     * @ORM\Column(name="numeroReservation", type="string", length=255, nullable=true)
      */
     private $numeroReservation;
 
@@ -72,7 +74,7 @@ class Commande
     /**
      * @var float
      *
-     * @ORM\Column(name="total", type="float")
+     * @ORM\Column(name="total", type="float", nullable=true)
      */
     private $total;
 
@@ -233,7 +235,7 @@ class Commande
     {
         $this->billet[] = $billet;
 
-        return $this;
+        $billet->setCommande($this);
     }
 
     /**
@@ -303,4 +305,7 @@ class Commande
     {
         return $this->email;
     }
+
+
+
 }

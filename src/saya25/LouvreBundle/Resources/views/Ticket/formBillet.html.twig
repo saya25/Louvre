@@ -1,0 +1,104 @@
+    {# src/saya25/LouvreBundle/Resources/views/Ticket/formBillet.html.twig #}
+
+    <h3>Réservation de billets </h3>
+
+    <div class="well">
+      {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+
+
+      {# Les erreurs générales du formulaire. #}
+
+      {{ form_errors(form) }}
+
+      {# Génération du label + error + widget pour un champ. #}
+        {{ form_row(form.dateVisite) }}
+        {{ form_row(form.status) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.pays) }}
+        {{ form_row(form.dateNaissance) }}
+        {{ form_row(form.tarifReduit) }}
+
+
+      {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+        {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
+
+      {# Génération du champ CSRF et de tous les champs non mentionnés ici. #}
+      {{ form_rest(form) }}
+
+      {# Fermeture de la balise <form> du formulaire HTML #}
+      {{ form_end(form) }}
+    </div>
+
+
+
+    <script>
+        
+        $(document).ready(function() {
+
+
+            $('.well').change(function() {
+
+                var jour_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_day').value;
+                var mois_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_month').value;
+                var annee_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_year').value;
+
+                var date_day = new Date();
+                jour_ojd = date_day.getDate();
+                mois_ojd = date_day.getMonth();
+                annee_ojd = date_day.getFullYear();
+
+
+
+                if ((mois_n < mois_ojd) || ((mois_n == mois_ojd && jour_n <= jour_ojd))) {
+                    age = (annee_ojd ++) - (annee_n);
+                }
+
+                else if (mois_n >= mois_ojd && (jour_n > jour_ojd)) {
+                    age = (annee_ojd -1) - (annee_n);
+                }
+
+                else {
+                    age = annee_ojd - annee_n;
+                }
+
+                if (age <4 ) {
+                    document.getElementById('prix').innerHTML = 'gratuit';
+                }
+
+                if (age >=4 && age <12) {
+                    document.getElementById('prix').innerHTML = 8;
+                }
+
+                if (age >=12) {
+                    document.getElementById('prix').innerHTML = 16;
+
+                    if ($('#saya25_louvrebundle_billet_status').val() == '0')
+                    {
+                        document.getElementById('prix').innerHTML = 8;
+                    }
+                }
+
+                if (age >60) {
+                    document.getElementById('prix').innerHTML = 12;
+                }
+
+                if (document.getElementById('saya25_louvrebundle_billet_tarifReduit').checked) {
+                    document.getElementById('prix').innerHTML = 10;
+                }
+
+            });
+        });
+
+
+    </script>
+
+
+
+
+
+
+    
+
+

@@ -13,6 +13,7 @@
         <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
     </ol>
 
+
           <h1>Finalisez votre réservation</h1>
       </div>
       <div class="recapitulatif">
@@ -20,6 +21,7 @@
               {% for billet in listeBillets %}
                   <li>
                       {% if billet.status == 1 %}
+                        {{ billet.dateVisite|date('d/m/Y') }}
                       <p> Billet journée </p>
                       {% elseif billet.status == 0 %}
                       <p> Billet demi journée </p>
@@ -28,11 +30,16 @@
                   <li>Pas (encore !) d'annonces</li>
                 {% endif %}
               {% endfor %}
-            <p> Prix total : </p>
+
       </div>
+
+    <div id="prix"> </div>
+
 
 
     <script>
+
+
     var disableddates = ["25-12-2016", "01-05-2017", "01-11-2017", "25-12-2017"];
 
     function DisableSpecificDates(date) {
@@ -71,6 +78,6 @@
 
         </script>
 
-        {{ include("saya25LouvreBundle:Ticket:form.html.twig") }}
+        {{ include("saya25LouvreBundle:Ticket:formBillet.html.twig") }}
 
     {% endblock %}

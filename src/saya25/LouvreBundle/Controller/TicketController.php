@@ -3,10 +3,13 @@
 namespace saya25\LouvreBundle\Controller;
 
 use saya25\LouvreBundle\Form\BilletType;
+use saya25\LouvreBundle\Form\CommandeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use saya25\LouvreBundle\Entity\Commande;
 use saya25\LouvreBundle\Entity\Billet;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TicketController extends Controller
 {
@@ -21,13 +24,17 @@ class TicketController extends Controller
      public function billetterieAction(Request $request)
     {
 
-        $billet = new Billet();
+        $commande = new Commande();
+        $billet = new billet();
         $form = $this->createForm(BilletType::class, $billet);
 
 
+
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+
+            $commande->addBillet($billet);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($billet);
+            $em->persist($commande);
             $em->flush();
 
             return $this->redirectToRoute('saya25_louvre_billetterie', array('id' => $billet->getId()));
@@ -40,6 +47,22 @@ class TicketController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
