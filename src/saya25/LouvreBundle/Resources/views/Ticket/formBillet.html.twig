@@ -18,6 +18,7 @@
         {{ form_row(form.prenom) }}
         {{ form_row(form.pays) }}
         {{ form_row(form.dateNaissance) }}
+
         {{ form_row(form.tarifReduit) }}   <p id="prix"> </p>
 
 
@@ -34,10 +35,7 @@
 
 
     <script>
-
         $(document).ready(function() {
-
-
             $('.well').change(function () {
                     var jour_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_day').value;
                     var mois_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_month').value;
@@ -63,33 +61,36 @@
 
                     if (age < 4) {
                         document.getElementById('prix').innerHTML = 'Billet gratuit';
+                        document.getElementById('saya25_louvrebundle_billet_prix').value = 0;
+
                     }
 
                     if (age >= 4 && age < 12) {
                         document.getElementById('prix').innerHTML = 'prix: 8 €';
+                        document.getElementById('saya25_louvrebundle_billet_prix').value = 8;
                     }
 
                     if (age >= 12) {
                         document.getElementById('prix').innerHTML = 'prix : 16 €';
+                        document.getElementById('saya25_louvrebundle_billet_prix').value = 16;
 
                         if ($('#saya25_louvrebundle_billet_status').val() == '0') {
                             document.getElementById('prix').innerHTML = 'prix : 8 €';
+                            document.getElementById('saya25_louvrebundle_billet_prix').value = 8;
                         }
                     }
 
                     if (age > 60) {
                         document.getElementById('prix').innerHTML = 'prix : 12 € ';
+                        document.getElementById('saya25_louvrebundle_billet_prix').value = 12;
                     }
 
                     if (document.getElementById('saya25_louvrebundle_billet_tarifReduit').checked) {
                         document.getElementById('prix').innerHTML = 'prix : 10 € ';
+                        document.getElementById('saya25_louvrebundle_billet_prix').value = 10;
                     }
-
                 });
             });
-
-
-
     </script>
 
 

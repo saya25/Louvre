@@ -4,6 +4,7 @@ namespace saya25\LouvreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-
 
 
 
@@ -42,8 +42,10 @@ class BilletType extends AbstractType
             ->add('prenom',         TextType::class)
             ->add('pays',           CountryType::class)
             ->add('dateNaissance',  BirthdayType::class)
+            ->add('prix',           HiddenType::class)
             ->add('tarifReduit',    CheckboxType::class, array(
                     'required'  => false,
+
             ))
             ->add('Ajouter',        SubmitType::class);
 
