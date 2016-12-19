@@ -43,7 +43,7 @@ class BilletType extends AbstractType
             ->add('pays',           CountryType::class)
             ->add('dateNaissance',  BirthdayType::class)
             ->add('tarifReduit',    CheckboxType::class, array(
-                'required'  => false,
+                    'required'  => false,
             ))
             ->add('Ajouter',        SubmitType::class);
 

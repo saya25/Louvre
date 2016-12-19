@@ -3,7 +3,7 @@
 namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use saya25\LouvreBundle\Form\CommandeType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Commande
@@ -43,6 +43,7 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @Assert\Email(message="L'email '{{value}}' n'est pas une adresse valide.", checkMX= true)
      */
     private $email;
 
