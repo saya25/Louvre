@@ -16,6 +16,14 @@
     </div>
     <div>
  		<h1>Récapitulatif</h1>
+
 	</div>
-	
+
+    <div>
+
+        {{ form_start(form) }}
+        {{ form_row(form) }}
+        <button type="submit"> Enregistrer </button>
+        {{ form_end (form) }}
+    </div>
 {% endblock %}

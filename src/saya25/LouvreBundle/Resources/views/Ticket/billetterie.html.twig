@@ -21,9 +21,11 @@
                   <li>
                       {% if billet.status == 1 %}
                         {{ billet.dateVisite|date('d/m/Y') }}
+                          <p> {{ billet.prix }} € </p>
                       <p> Billet journée </p>
                       {% elseif billet.status == 0 %}
                           {{ billet.dateVisite|date('d/m/Y') }}
+                          <p> {{ billet.prix }} € </p>
                       <p> Billet demi journée </p>
                   </li>
                     {% else %}

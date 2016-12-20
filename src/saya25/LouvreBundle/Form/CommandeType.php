@@ -3,6 +3,7 @@
 namespace saya25\LouvreBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -22,8 +23,7 @@ class CommandeType extends AbstractType
         $builder
             ->add('nom',                TextType::class)
             ->add('prenom',             TextType::class)
-            ->add('dateCommande',       DateType::class)
-            ->add('Ajouter',        SubmitType::class);
+            ->add('email',              EmailType::class)
         ;
     }
     

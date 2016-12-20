@@ -23,20 +23,13 @@ class TicketController extends Controller
     }
      public function billetterieAction(Request $request)
     {
-
-        $commande = new Commande();
         $billet = new billet();
         $form = $this->createForm(BilletType::class, $billet);
 
 
-
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
 
-            $commande->addBillet($billet);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commande);
-            $em->flush();
-
+            $this->get('session')->set('ticket', $billet);
             return $this->redirectToRoute('saya25_louvre_billetterie', array('id' => $billet->getId()));
         }
 
@@ -48,27 +41,29 @@ class TicketController extends Controller
         ));
     }
 
+    public function commandeAction (Request $request) {
+
+        $commande = new Commande();
+        $form = $this->createForm(CommandeType::class, $commande);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            $billet = $this->get('session')->get('ticket');
+
+                $commande->addBillet($billet);
+                $this->get('session')->set('commande', $commande);
+
+            return $this->redirectToRoute('saya25_louvre_paiement');
+        }
 
 
+        return $this->render('saya25LouvreBundle:Ticket:coordonnees.html.twig', array (
+
+            'form' => $form->createView()
+
+        ));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
      public function coordonneesAction()
     {
         return $this->render('saya25LouvreBundle:Ticket:coordonnees.html.twig');
