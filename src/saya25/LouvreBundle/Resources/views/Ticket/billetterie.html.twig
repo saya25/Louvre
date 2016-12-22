@@ -17,21 +17,11 @@
           <h1>Finalisez votre réservation</h1>
       <div class="recapitulatif">
           <h1 id="recapitulatif">Récapitulatif</h1>
-              {% for billet in listeBillets %}
-                  <li>
-                      {% if billet.status == 1 %}
-                        {{ billet.dateVisite|date('d/m/Y') }}
-                          <p> {{ billet.prix }} € </p>
-                      <p> Billet journée </p>
-                      {% elseif billet.status == 0 %}
-                          {{ billet.dateVisite|date('d/m/Y') }}
-                          <p> {{ billet.prix }} € </p>
-                      <p> Billet demi journée </p>
-                  </li>
-                    {% else %}
-                  <li>Pas (encore !) de billets</li>
-                {% endif %}
-              {% endfor %}
+          {{app.request.session.get("ticket").Status() == 1 }}
+          {{app.request.session.get("ticket").Nom()}}
+          {{app.request.session.get("ticket").Prenom()}}
+          {{app.request.session.get("ticket").Pays()}}
+          {{app.request.session.get("ticket").Prix()}}
       </div>
 
     <br />
