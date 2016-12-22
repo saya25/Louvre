@@ -4,6 +4,7 @@ namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Commande
@@ -91,7 +92,9 @@ class Commande
      */
     public function __construct()
     {
-        $this->billet = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateCommande = new \Datetime();
+        $this->commande = new ArrayCollection();
+        $this->numeroReservation = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz123456789"), 0, rand(10,15));
     }
 
     /**
