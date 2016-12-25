@@ -8,7 +8,7 @@
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">Détail de la commande</li>
-        <li class="breadcrumb-item"><a href=" {{ path('saya25_louvre_coordonnees') }}">Coordonnées</a></li>
+        <li class="breadcrumb-item"><a href=" {{ path('saya25_louvre_commande') }}">Coordonnées</a></li>
         <li class="breadcrumb-item"><a href=" {{  path('saya25_louvre_paiement') }}">Paiement</a></li>
         <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
     </ol>
@@ -23,13 +23,14 @@
                     {{app.request.session.get("ticket").Prenom}} </p>
                 <p id="price">{{app.request.session.get("ticket").Prix}} €</p>
                 {{ app.request.session.get("ticket").dateNaissance|date("m/d/Y") }}
-
+                <a href="{{ path('saya25_louvre_deletebillet') }}", class="btn btn-alert btn-danger",  id="button_reservation">Supprimer le billet </a>
             {% elseif  app.request.session.get("ticket").Status == 0  %}
                 <p> Billet demi-journée </p>
                 <p> {{app.request.session.get("ticket").Nom}}
                     {{app.request.session.get("ticket").Prenom}} </p>
                 <p id="price">{{app.request.session.get("ticket").Prix}} €</p>
                 {{ app.request.session.get("ticket").dateNaissance|date("m/d/Y") }}
+                <a href="{{ path('saya25_louvre_deletebillet') }}", class="btn btn-alert btn-danger",  id="button_reservation">Supprimer le billet </a>
             {% else %}
                 <p> Pas encore de billets </p>
             {% endif %}
