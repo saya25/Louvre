@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
  * Commande
  *
@@ -93,7 +94,7 @@ class Commande
     public function __construct()
     {
         $this->dateCommande = new \Datetime();
-        $this->commande = new ArrayCollection();
+        $this->billet = new ArrayCollection();
         $this->numeroReservation = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz123456789"), 0, rand(10,15));
     }
 
@@ -210,11 +211,11 @@ class Commande
      *
      * @return Commande
      */
-    public function setNumeroReservation($numeroReservation)
+    public function setNumeroReservation()
     {
-        $this->numeroReservation = $numeroReservation;
+        $numeroReservation = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz123456789"), 0, rand(12,17));
 
-        return $this;
+        return $numeroReservation;
     }
 
     /**

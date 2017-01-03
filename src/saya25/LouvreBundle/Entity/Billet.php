@@ -5,6 +5,7 @@ namespace saya25\LouvreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * Billet
  *
@@ -14,6 +15,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Billet
 {
 
+    CONST TARIF_GRAUTIT ='gratuit';
+    CONST TARIF_ENFANT = 'enfant';
+    CONST TARIF_NORMAL = 'normal';
+    CONST TARIF_SENIOR = 'sénior';
+    CONST TARIF_REDUIT = 'réduit';
+
+    CONST BILLET_GRATUIT = 0;
+    CONST BILLET_ENFANT = 8;
+    CONST BILLET_NORMAL = 16;
+    CONST BILLET_SENIOR = 12;
+    CONST BILLET_REDUIT = 10;
 
     /**
      * @var int
@@ -23,15 +35,6 @@ class Billet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="date_visite", type="date")
-     */
-    private $dateVisite;
 
 
     /**
@@ -91,9 +94,20 @@ class Billet
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float", nullable=true)
+     * @ORM\Column(name="prix", type="float")
      */
     private $prix;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Tarif", type="string", length=255)
+     */
+    private $tarif;
+
+
+
 
 
 
@@ -306,51 +320,28 @@ class Billet
     }
 
 
-    public function tarifBillet(Billet $billet)
-    {
-
-        $newBillet = $billet->getBillet();
-        $dateNaissance = $newBillet->getDateNaissance();
-
-        $dateInterval = $dateNaissance->diff(new \DateTime());
-
-
-        if ($dateInterval->age < 12) {
-            $billet->setPrix(Billet::TARIF_ENFANT);
-            return $this;
-
-        }
-    }
-
-
 
     /**
-     * Set dateVisite
+     * Set tarif
      *
-     * @param \DateTime $dateVisite
+     * @param string $tarif
      *
      * @return Billet
      */
-    public function setDateVisite($dateVisite)
+    public function setTarif($tarif)
     {
-        $this->dateVisite = $dateVisite;
+        $this->tarif = $tarif;
 
         return $this;
     }
 
     /**
-     * Get dateVisite
+     * Get tarif
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getDateVisite()
+    public function getTarif()
     {
-        return $this->dateVisite;
+        return $this->tarif;
     }
-
-
-
-
-
-
 }

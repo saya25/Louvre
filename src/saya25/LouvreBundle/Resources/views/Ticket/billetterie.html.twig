@@ -13,76 +13,18 @@
         <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
     </ol>
 
+    <h1> Recapitulatif </h1>
 
-    <div class="recapitulatif">
-        <h1 id="recapitulatif">Récapitulatif</h1>
-        {% if app.request.session.get("ticket").Status is defined %}
-            {% if app.request.session.get("ticket").Status == 1 %}
-                <p> Billet journée </p>
-                <p> {{app.request.session.get("ticket").Nom}}
-                    {{app.request.session.get("ticket").Prenom}} </p>
-                <p id="price">{{app.request.session.get("ticket").Prix}} €</p>
-                {{ app.request.session.get("ticket").dateNaissance|date("m/d/Y") }}
-                <a href="{{ path('saya25_louvre_deletebillet') }}", class="btn btn-alert btn-danger",  id="button_reservation">Supprimer le billet </a>
-            {% elseif  app.request.session.get("ticket").Status == 0  %}
-                <p> Billet demi-journée </p>
-                <p> {{app.request.session.get("ticket").Nom}}
-                    {{app.request.session.get("ticket").Prenom}} </p>
-                <p id="price">{{app.request.session.get("ticket").Prix}} €</p>
-                {{ app.request.session.get("ticket").dateNaissance|date("m/d/Y") }}
-                <a href="{{ path('saya25_louvre_deletebillet') }}", class="btn btn-alert btn-danger",  id="button_reservation">Supprimer le billet </a>
-            {% else %}
-                <p> Pas encore de billets </p>
-            {% endif %}
-        {% endif %}
-    </div>
+    {% if app.session.get("commande").Status is defined %}
 
+        {{app.session.get("ticket").Nom}}
+        {{ app.session }}
+    {% endif %}
+          <h1>Finalisez votre réservation</h1>
     <br />
     <br />
 
 
-
-
-    <script>
-
-
-    var disableddates = ["25-12-2016", "01-05-2017", "01-11-2017", "25-12-2017"];
-
-    function DisableSpecificDates(date) {
-        var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
-        return [disableddates.indexOf(string) == -1];
-    }
-
-    $(function() {
-        $("#saya25_louvrebundle_billet_dateVisite").datepicker({
-            beforeShowDay: DisableSpecificDates,
-            minDate : 0,
-        });
-    });
-
-        $( function() {
-          $( "#saya25_louvrebundle_billet_dateVisite" ).datepicker();
-           $.datepicker.regional['fr'] = {
-        closeText: 'Fermer',
-        prevText: 'Précédent',
-        nextText: 'Suivant',
-        currentText: 'Aujourd\'hui',
-        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-        monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-        dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-        dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-        dayNamesMin: ['D','L','M','M','J','V','S'],
-        weekHeader: 'Sem.',
-        dateFormat: 'dd/mm/yy',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: ''};
-          $.datepicker.setDefaults($.datepicker.regional['fr']);
-      });
-
-
-        </script>
 
         {{ include("saya25LouvreBundle:Ticket:formBillet.html.twig") }}
 

@@ -3,6 +3,8 @@
 namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Billet
@@ -13,15 +15,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
 
+    CONST BILLET_GRAUTIT ='gratuit';
+    CONST BILLET_ENFANT = 'enfant';
+    CONST BILLET_NORMAL = 'normal';
+    CONST BILLET_SENIOR = 'sénior';
+    CONST BILLET_REDUIT = 'réduit';
 
     CONST TARIF_GRATUIT = 0;
-    CONST TARIF_REDUIT = 10;
-    CONST TARIF_NORMAL = 16;
     CONST TARIF_ENFANT = 8;
+    CONST TARIF_NORMAL = 16;
     CONST TARIF_SENIOR = 12;
-
-    CONST ENFANT = 'Enfant';
-
+    CONST TARIF_REDUIT = 10;
 
     /**
      * @var int
@@ -31,15 +35,6 @@ class Billet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="date_visite", type="date")
-     */
-    private $dateVisite;
 
 
     /**
@@ -54,6 +49,8 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=150, nullable=false)
+     * @Assert\Length(min=3, minMessage="Le nom saisi n'est pas valide")
+     * @Assert\Length(max=25, maxMessage="Le nom saisi n'est pas valide")
      */
     private $nom;
 
@@ -71,6 +68,8 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=150, nullable=false)
+     * @Assert\Length(min=3, minMessage="Le prénom saisi est trop court")
+     * @Assert\Length(max=20, maxMessage="Le prenom saisi n'est pas valide")
      */
     private $prenom;
 
@@ -95,9 +94,20 @@ class Billet
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float", nullable=false)
+     * @ORM\Column(name="prix", type="float")
      */
     private $prix;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Tarif", type="string", length=255)
+     */
+    private $tarif;
+
+
+
 
 
 
@@ -307,23 +317,6 @@ class Billet
     public function getStatus()
     {
         return $this->status;
-    }
-
-
-    public function tarifBillet(Billet $billet)
-    {
-
-        $newBillet = $billet->getBillet();
-        $dateNaissance = $newBillet->getDateNaissance();
-
-        $dateInterval = $dateNaissance->diff(new \DateTime());
-
-
-        if ($dateInterval->age < 12) {
-            $billet->setPrix(Billet::TARIF_ENFANT);
-            return $this;
-
-        }
     }
 
 

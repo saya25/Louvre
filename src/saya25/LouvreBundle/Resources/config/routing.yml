@@ -14,6 +14,10 @@ saya25_louvre_commande :
     path:     /commande
     defaults: { _controller: saya25LouvreBundle:Ticket:commande}
 
+saya25_louvre_coordonnees :
+    path:     /coordonnees
+    defaults: { _controller: saya25LouvreBundle:Ticket:coordonnees }
+
 saya25_louvre_paiement :
     path:     /paiement
     defaults: { _controller: saya25LouvreBundle:Ticket:paiement}

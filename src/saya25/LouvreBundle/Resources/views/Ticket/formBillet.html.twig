@@ -1,103 +1,92 @@
     {# src/saya25/LouvreBundle/Resources/views/Ticket/formBillet.html.twig #}
 
+    {% extends "saya25LouvreBundle::layout.html.twig" %}
+    {% block saya25blog_body %}
+
+
     <h3>Réservation de billets </h3>
+        <div class="well">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            {# Les erreurs générales du formulaire. #}
+
+            {{ form_errors(form) }}
+            {{ form_row(form) }}
+
+            <div id="prix"> </div>
+            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_end(form) }}
+        </div>
+
 
     <div class="well">
-      {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-
-
-      {# Les erreurs générales du formulaire. #}
-
-      {{ form_errors(form) }}
-
-      {# Génération du label + error + widget pour un champ. #}
-        {{ form_row(form.dateVisite) }}
-        {{ form_row(form.status) }}
-        {{ form_row(form.nom) }}
-        {{ form_row(form.prenom) }}
-        {{ form_row(form.pays) }}
-        {{ form_row(form.dateNaissance) }}
-
-        {{ form_row(form.tarifReduit) }}   <p id="prix"> </p>
-
-
-      {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-        {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
-
-      {# Génération du champ CSRF et de tous les champs non mentionnés ici. #}
-      {{ form_rest(form) }}
-
-      {# Fermeture de la balise <form> du formulaire HTML #}
-      {{ form_end(form) }}
+    <a href="#" id="add_billet" class="btn btn-default">Billet supplémentaire</a>
     </div>
 
-    <a href="{{path('saya25_louvre_commande')}}"> Poursuivre </a>
 
-
-
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
-            $('.well').change(function () {
-                    var jour_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_day').value;
-                    var mois_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_month').value;
-                    var annee_n = document.getElementById('saya25_louvrebundle_billet_dateNaissance_year').value;
 
-                    var date_day = new Date();
-                    jour_ojd = date_day.getDate();
-                    mois_ojd = date_day.getMonth();
-                    annee_ojd = date_day.getFullYear();
+                var $container = $('div#commande_billet_billet');
 
+                var index = $container.find(':input').length;
 
-                    if ((mois_n < mois_ojd) || ((mois_n == mois_ojd && jour_n <= jour_ojd))) {
-                        age = (annee_ojd++) - (annee_n);
-                    }
+                $('#add_billet').click(function (e) {
 
-                    else if (mois_n >= mois_ojd && (jour_n > jour_ojd)) {
-                        age = (annee_ojd - 1) - (annee_n);
-                    }
+                    addBillet($container);
+                    e.preventDefault();
+                    return false;
+                });
 
-                    else {
-                        age = annee_ojd - annee_n;
-                    }
+                if(index ==0) {
+                    addBillet($container);
+                } else {
+                    $container.children('div').each(function(){
+                       addDeleteLink($(this));
+                    });
+                }
 
-                    if (age < 4) {
-                        document.getElementById('prix').innerHTML = 'Billet gratuit';
-                        document.getElementById('saya25_louvrebundle_billet_prix').value = 0;
+                function addBillet($container) {
 
-                    }
+                    var template = $container.attr('data-prototype')
+                            .replace(/__name__label__/g, 'Billet n°' + (index+1))
+                            .replace(/__name__/g,        index)
+                        ;
 
-                    if (age >= 4 && age < 12) {
-                        document.getElementById('prix').innerHTML = 'prix: 8 €';
-                        document.getElementById('saya25_louvrebundle_billet_prix').value = 8;
-                    }
+                    var $prototype = $(template);
 
-                    if (age >= 12) {
-                        document.getElementById('prix').innerHTML = 'prix : 16 €';
-                        document.getElementById('saya25_louvrebundle_billet_prix').value = 16;
+                    addDeleteLink($prototype);
 
-                        if ($('#saya25_louvrebundle_billet_status').val() == '0') {
-                            document.getElementById('prix').innerHTML = 'prix : 8 €';
-                            document.getElementById('saya25_louvrebundle_billet_prix').value = 8;
-                        }
-                    }
+                    $container.append($prototype);
+                    index++;
+                }
 
-                    if (age > 60) {
-                        document.getElementById('prix').innerHTML = 'prix : 12 € ';
-                        document.getElementById('saya25_louvrebundle_billet_prix').value = 12;
-                    }
+                function addDeleteLink($prototype) {
 
-                    if (document.getElementById('saya25_louvrebundle_billet_tarifReduit').checked) {
-                        document.getElementById('prix').innerHTML = 'prix : 10 € ';
-                        document.getElementById('saya25_louvrebundle_billet_prix').value = 10;
+                    var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                    $prototype.append($deleteLink);
+
+                    $deleteLink.click(function(e) {
+
+                        $prototype.remove();
+                        e.preventDefault();
+                        return false;
+                        });
                     }
                 });
-            });
-    </script>
+        </script>
+
+
+
+       
 
 
 
 
+
+        <a href="{{path('saya25_louvre_commande')}}"> Poursuivre </a>
+
+{% endblock %}
 
 
     

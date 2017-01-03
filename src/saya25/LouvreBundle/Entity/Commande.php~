@@ -3,12 +3,16 @@
 namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Commande
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="saya25\LouvreBundle\Repository\CommandeRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commande
 {
@@ -24,14 +28,14 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
@@ -40,7 +44,8 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @Assert\Email(message="L'email '{{value}}' n'est pas une adresse valide.", checkMX= true)
      */
     private $email;
 
@@ -49,14 +54,14 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCommande", type="datetime")
+     * @ORM\Column(name="dateCommande", type="datetime", nullable=true)
      */
     private $dateCommande;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateEntree", type="datetime")
+     * @ORM\Column(name="dateEntree", type="datetime", nullable=true)
      */
     private $dateEntree;
 
@@ -64,7 +69,7 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="numeroReservation", type="string", length=255)
+     * @ORM\Column(name="numeroReservation", type="string", length=255, nullable=true)
      */
     private $numeroReservation;
 
@@ -72,7 +77,7 @@ class Commande
     /**
      * @var float
      *
-     * @ORM\Column(name="total", type="float")
+     * @ORM\Column(name="total", type="float", nullable=true)
      */
     private $total;
 
@@ -88,7 +93,9 @@ class Commande
      */
     public function __construct()
     {
-        $this->billet = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateCommande = new \Datetime();
+        $this->billet = new ArrayCollection();
+        $this->numeroReservation = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz123456789"), 0, rand(10,15));
     }
 
     /**
@@ -204,11 +211,11 @@ class Commande
      *
      * @return Commande
      */
-    public function setNumeroReservation($numeroReservation)
+    public function setNumeroReservation()
     {
-        $this->numeroReservation = $numeroReservation;
+        $numeroReservation = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz123456789"), 0, rand(12,17));
 
-        return $this;
+        return $numeroReservation;
     }
 
     /**
@@ -233,7 +240,7 @@ class Commande
     {
         $this->billet[] = $billet;
 
-        return $this;
+        $billet->setCommande($this);
     }
 
     /**
@@ -279,4 +286,31 @@ class Commande
     {
         return $this->total;
     }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Commande
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+
+
 }
