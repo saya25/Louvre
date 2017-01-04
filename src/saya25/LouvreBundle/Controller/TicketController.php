@@ -44,6 +44,18 @@ class TicketController extends Controller
         ));
     }
 
+    public function paiementAction()
+    {
+        return $this->render('saya25LouvreBundle:Ticket:paiement.html.twig');
+    }
+    public function confirmationAction()
+    {
+        return $this->render('saya25LouvreBundle:Ticket:confirmation.html.twig');
+    }
+
+
+
+
 
     public function deletebilletAction(Request $request)
     {
@@ -54,14 +66,6 @@ class TicketController extends Controller
         return $this->redirectToRoute('saya25_louvre_billetterie');
     }
 
-    public function paiementAction()
-    {
-        return $this->render('saya25LouvreBundle:Ticket:paiement.html.twig');
 
-    }
-    public function confirmationAction()
-    {
-        return $this->render('saya25LouvreBundle:Ticket:confirmation.html.twig');
-    }
 }
 

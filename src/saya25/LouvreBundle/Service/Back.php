@@ -3,6 +3,7 @@
 namespace saya25\LouvreBundle\Service;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +11,7 @@ use saya25\LouvreBundle\Form\CommandeBilletType;
 use saya25\LouvreBundle\Form\CommandeType;
 use saya25\LouvreBundle\Form\Billet;
 use saya25\LouvreBundle\Entity\Commande;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 
@@ -45,14 +47,36 @@ class Back
     protected $price;
 
 
+    /**
+     * @var Router
+     */
+    protected $router;
 
 
-    public function __construct(EntityManager $doctrine, FormFactory $form, Session $session, Price $price)
+    /**
+     * @var Stripe;
+     */
+    protected $stripe;
+
+    /**
+     * Back constructor.
+     * @param EntityManager $doctrine
+     * @param FormFactory $form
+     * @param Session $session
+     * @param Price $price
+     * @param Router $router
+     */
+
+
+
+    public function __construct(EntityManager $doctrine, FormFactory $form, Session $session, Price $price, Router $router)
     {
         $this->doctrine = $doctrine;
         $this->form  = $form;
         $this->session = $session;
         $this->price = $price;
+        $this->router = $router;
+
     }
 
 
@@ -80,12 +104,14 @@ class Back
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-
                 $this->price->tarifBillet($commande);
-                $this->doctrine->persist($commande);
-                $this->doctrine->flush();
+
+                $response = new RedirectResponse('paiement');
+                $response->send();
 
         }
        return $form;
     }
 }
+
+

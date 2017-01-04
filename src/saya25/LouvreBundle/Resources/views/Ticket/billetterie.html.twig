@@ -14,18 +14,24 @@
     </ol>
 
     <h1> Recapitulatif </h1>
-
-    {% if app.session.get("commande").Status is defined %}
-
-        {{app.session.get("ticket").Nom}}
-        {{ app.session }}
-    {% endif %}
           <h1>Finalisez votre réservation</h1>
     <br />
     <br />
+    {% set commande = app.session.get('commande') %}
+        {% if commande.getBillet() is defined %}
+            {% for billet in commande.getBillet() %}
+                {% if billet.status == 1 %}
+                    <p id="journee"> Billet journée</p>
+                    {{ billet.prenom }}
+                    {{ billet.nom }}
+                {% elseif billet.status == 0 %}
+                    <p id="demiJournee"> Billet demi-journée</p>
+                    {{ billet.prenom }}
+                    {{ billet.nom }}
+                {% endif %}
+            {% endfor %}
+            <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger"> Supprimer les billets </a></p>
+        {% endif %}
 
-
-
-        {{ include("saya25LouvreBundle:Ticket:formBillet.html.twig") }}
-
+    {{ include("saya25LouvreBundle:Ticket:formBillet.html.twig") }}
     {% endblock %}

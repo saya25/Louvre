@@ -15,8 +15,41 @@
     <div>
     	<h2>Méthode de paiement</h2>
     </div>
-    
-  <form action="" method="POST">
 
-</form>
+
+    <form action="" method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key=""
+                data-amount="999"
+                data-name="Stripe.com"
+                data-description="Widget"
+                data-image="http://www.france-hotel-guide.com/fr/blog/wp-content/uploads/2014/09/musee-louvre.jpg"
+                data-locale="auto"
+                data-zip-code="true">
+        </script>
+    </form>
+
+    {% set commande = app.session.get('commande') %}
+    {% if commande.getBillet() is defined %}
+        {% for billet in commande.getBillet() %}
+            {% if billet.status == 1 %}
+                <p id="journee"> Billet journée</p>
+                {{ billet.prenom }}
+                {{ billet.nom }}
+                <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
+                <p> Billet :{{ billet.tarif }} </p>
+                <p> Prix : {{ billet.prix }} € </p>
+
+            {% elseif billet.status == 0 %}
+                <p id="demiJournee"> Billet demi-journée</p>
+                {{ billet.prenom }}
+                {{ billet.nom }}
+                <p>{{ billet.dateNaissance|date("m/d/Y") }} </p>
+                <p> Billet :{{ billet.tarif }} </p>
+                <p> Prix : {{ billet.prix }} € </p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
 {% endblock %}

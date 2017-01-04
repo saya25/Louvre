@@ -17,6 +17,20 @@
     <div>
  		<h1>Récapitulatif</h1>
 
+        {% set commande = app.session.get('commande') %}
+        {% if commande.getBillet() is defined %}
+            {% for billet in commande.getBillet() %}
+                {% if billet.status == 1 %}
+                    <p id="journee"> Billet journée</p>
+                    {{ billet.prenom }}
+                    {{ billet.nom }}
+                {% elseif billet.status == 0 %}
+                    <p id="demiJournee"> Billet demi-journée</p>
+                    {{ billet.prenom }}
+                    {{ billet.nom }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
 	</div>
 
     <script>
@@ -58,9 +72,6 @@
             });
         });
     </script>
-
-
-
 
     <div>
         {{ include("saya25LouvreBundle:Ticket:formCommande.html.twig") }}

@@ -6,8 +6,9 @@ services:
 
     core.back:
         class: saya25\LouvreBundle\Service\Back
-        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@session", "@app.price"]
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@session", "@app.price", "@router"]
 
 
     app.price:
         class: saya25\LouvreBundle\Service\Price
+
