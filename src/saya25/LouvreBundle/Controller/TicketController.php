@@ -79,6 +79,17 @@ class TicketController extends Controller
     }
 
 
+      public function contactAction()
+    {
+        return $this->render('saya25LouvreBundle:Ticket:contact.html.twig');
+    }
+
+    public function cgvAction()
+    {
+        return $this->render('saya25LouvreBundle:Ticket:cgv.html.twig');
+    }
+
+
 
 }
 

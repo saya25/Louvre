@@ -53,14 +53,7 @@ class CommandeType extends AbstractType
                     )),
                 ),
             ))
-            ->add('email', EmailType::class, array(
-                'constraints' => array(
-                    new NotBlank(),
-                    new Type('email', array(
-                        'message' => "L'email '{{ value }}' n'est pas valide"
-                    )),
-                ),
-            ));
+            ->add('email', EmailType::class);
     }
     
     /**

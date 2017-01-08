@@ -1,0 +1,16 @@
+{# src/saya25/LouvreBundle/Resources/views/Advert/piedDePage.html.twig #}
+
+{% extends "saya25LouvreBundle::layout.html.twig" %}
+
+{% block saya25blog_body %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-4"><a href="{{path('saya25_louvre_contact') }}" class="btn btn-info glyphicon glyphicon-envelope" id="contact"> Contactez-nous </a></div>
+            <div class="col-lg-4"> <img id="stripe"  src="{{ asset('bundles/saya25Louvre/images/stripe.png') }}"> </div>
+            <div class="col-lg-4"><a href="{{path('saya25_louvre_cgv') }}" class="btn btn-info" id="cgv"> CGV </a></div>
+        </div>
+</div>
+
+
+{% endblock %}
