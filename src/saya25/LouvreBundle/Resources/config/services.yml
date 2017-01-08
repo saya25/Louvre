@@ -12,3 +12,6 @@ services:
     app.price:
         class: saya25\LouvreBundle\Service\Price
 
+    app.mail:
+            class: saya25\LouvreBundle\Service\Mail
+            arguments: ["@mailer", "@twig"]

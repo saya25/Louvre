@@ -9,6 +9,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+//validators
+
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+
+
 class CommandeType extends AbstractType
 {
     /**
@@ -17,15 +24,43 @@ class CommandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateEntree',     DateType::class, array(
+            ->add('dateEntree', DateType::class, array(
                 'label' => 'Date de la visite',
-                'html5' => false,
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy',
             ))
-            ->add('nom',                TextType::class)
-            ->add('prenom',             TextType::class)
-            ->add('email',              EmailType::class);
+            ->add('nom', TextType::class, array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new Type('string'),
+                    new Length(array(
+                        'min'   => 4,
+                        'minMessage' => 'Le nom saisi est trop court !',
+                        'max'   =>40,
+                        'maxMessage' => 'Le nom saisi est trop long!',
+                    )),
+                ),
+            ))
+            ->add('prenom', TextType::class, array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new Type('string'),
+                    new Length(array(
+                        'min'   => 3,
+                        'minMessage' => 'Le prénom saisi est trop court !',
+                        'max'   =>30,
+                        'maxMessage' => 'Le prénom saisi est trop long!',
+                    )),
+                ),
+            ))
+            ->add('email', EmailType::class, array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new Type('email', array(
+                        'message' => "L'email '{{ value }}' n'est pas valide"
+                    )),
+                ),
+            ));
     }
     
     /**

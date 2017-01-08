@@ -12,6 +12,7 @@ use saya25\LouvreBundle\Form\CommandeType;
 use saya25\LouvreBundle\Form\Billet;
 use saya25\LouvreBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Stripe\Error\Card;
 
 
 
@@ -65,9 +66,8 @@ class Back
      * @param Session $session
      * @param Price $price
      * @param Router $router
+     * @param Stripe $stripe
      */
-
-
 
     public function __construct(EntityManager $doctrine, FormFactory $form, Session $session, Price $price, Router $router)
     {
@@ -76,7 +76,6 @@ class Back
         $this->session = $session;
         $this->price = $price;
         $this->router = $router;
-
     }
 
 
@@ -111,6 +110,61 @@ class Back
 
         }
        return $form;
+    }
+
+
+    public function paymentAction(Request $request)
+    {
+        $commande = $this->session->get('commande');
+
+        if (null === $commande) {
+            throw new \LogicException(
+                sprintf(
+                    'La commande ne peut être vide.'
+                )
+            );
+        }
+
+        $this->doctrine->persist($commande);
+
+        if ($request->isMethod('POST')){
+            $token = $request->get('stripeToken');
+
+            if ($token) {
+                $commande->setValidated(true);
+                try {
+                    $this->stripe->chargeCard(
+                        $this->stripe->getApikey(),
+                        $token,
+                        $commande->getTotal()
+                    );
+
+                    $this->doctrine->flush();
+                    $response = new RedirectResponse('paiement');
+                    $response->send();
+
+                } catch (Card $exception) {
+                    $exception->getMessage();
+                }
+                $this->session->getFlashBag()->add(
+                    'success',
+                    'votre commande a bien été enregistrée, vous
+                    allez recevoir un email contenant vos différent(s) billet(s)'
+                );
+            } else {
+
+                $this->doctrine->remove($commande);
+
+                $response = new RedirectResponse('paiement');
+                $response->send();
+
+                $this->session->getFlashbag()->add(
+                    'danger',
+                    'Le paiement a été refuser, veuillez réessayer'
+                );
+            }
+        }
+        return $commande;
     }
 }
 

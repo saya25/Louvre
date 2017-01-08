@@ -13,7 +13,9 @@ class CommandeBilletType extends AbstractType
     {
         $builder
             ->add('billet', CollectionType::class, array(
+                'label' => false,
                 'entry_type'   => BilletType::class,
+                'label' => false,
                 'allow_add'    => true,
                 'allow_delete'  => true,
             ));

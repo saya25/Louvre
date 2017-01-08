@@ -3,8 +3,6 @@
 namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * Billet
@@ -49,8 +47,6 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=150, nullable=false)
-     * @Assert\Length(min=3, minMessage="Le nom saisi n'est pas valide")
-     * @Assert\Length(max=25, maxMessage="Le nom saisi n'est pas valide")
      */
     private $nom;
 
@@ -68,8 +64,6 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=150, nullable=false)
-     * @Assert\Length(min=3, minMessage="Le prénom saisi est trop court")
-     * @Assert\Length(max=20, maxMessage="Le prenom saisi n'est pas valide")
      */
     private $prenom;
 
@@ -105,10 +99,6 @@ class Billet
      * @ORM\Column(name="Tarif", type="string", length=255)
      */
     private $tarif;
-
-
-
-
 
 
      /**

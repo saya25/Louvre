@@ -18,6 +18,6 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    # Stripe token
-     api.token: 46449d16z4d0e8522d5z62a6a1d
-     api.publishing_key: 654d96z169z19d11+z+16a166
+
+    private_key: sk_test_xqIKpUZv1vqVvrCJc0zoBSat
+    public_key: pk_test_C9N5xzeBHyGplmZwpsbyciS6
