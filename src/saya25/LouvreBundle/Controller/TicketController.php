@@ -66,6 +66,9 @@ class TicketController extends Controller
                 "description" => "First test charge!"
             ));
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->flush();
             return $this->redirectToRoute('saya25_louvre_confirmation');
         }
         return $this->render('saya25LouvreBundle:Ticket:paiement.html.twig', array(
