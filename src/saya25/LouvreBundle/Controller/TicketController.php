@@ -84,10 +84,13 @@ class TicketController extends Controller
 
 
 
-
     public function confirmationAction()
     {
-        return $this->render('saya25LouvreBundle:Ticket:confirmation.html.twig');
+        $commande = $this->get("core.back")->confirmationCommande();
+
+        return $this->render('saya25LouvreBundle:Ticket:confirmation.html.twig', array(
+            'commande'  => $commande,
+        ));
     }
 
 

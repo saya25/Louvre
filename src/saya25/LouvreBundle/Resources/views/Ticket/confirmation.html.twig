@@ -4,11 +4,24 @@
 
 {% block saya25blog_body %}
 
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">Détail de la commande</li>
-        <li class="breadcrumb-item">Coordonnées</li>
-        <li class="breadcrumb-item">Paiement</li>
-        <li class="breadcrumb-item active"><a href="#">Confirmation</a></li>
-    </ol>
-
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Détails de la commande</li>
+            <li class="breadcrumb-item active">Commande</li>
+            <li class="breadcrumb-item active">Paiement</li>
+            <li class="breadcrumb-item"> Confirmation</li>
+        </ol>
+        {% if commande.getBillet() is defined %}
+            <p class="glyphicon glyphicon-ok"> </p>
+            <p>Votre paiement a été accepter</p>
+            <p> Vous allez recevoir un e-mail de confirmation à l'adresse suivante : <strong>{{ commande.email }}</strong></p>
+            <h2> Effectuer une autre commande ?</h2>
+            <p><a class="btn btn-primary" href="{{ path('saya25_louvre_billetterie') }}">Nouvelle commande </a></p>
+            {{ app.session.clear }}
+        {% else %}
+            <p class="glyphicon glyphicon glyphicon-remove"> </p>
+            <p>Votre paiement a échouer, veuillez réessayer</p>
+            <p><a class="btn btn-primary" href="{{ path('saya25_louvre_paiement') }}">Effectuer un nouveau paiement</a></p>
+        {% endif %}
+    </div>
 {% endblock %}
