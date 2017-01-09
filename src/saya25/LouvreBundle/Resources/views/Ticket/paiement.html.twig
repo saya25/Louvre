@@ -17,18 +17,17 @@
     </div>
 
 
-    <form action="" method="POST">
-        <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="{{ public_key}}"
-                data-amount=""
-                data-name="Stripe.com"
-                data-description="Widget"
-                data-image="http://www.france-hotel-guide.com/fr/blog/wp-content/uploads/2014/09/musee-louvre.jpg"
-                data-locale="auto"
-                data-zip-code="true">
-        </script>
-    </form>
+<form action="{{ path('saya25_louvre_paiement') }}" method="POST">
+    <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ public_key }}"
+            data-amount="{{ commande.total *100 }}"
+            data-name="Billet(s) musée du Louvre"
+            data-image="http://www.france-hotel-guide.com/fr/blog/wp-content/uploads/2014/09/musee-louvre.jpg"
+            data-locale="auto"
+            data-zip-code="true">
+    </script>
+</form>
 
     {% set commande = app.session.get('commande') %}
     {% if commande.getBillet() is defined %}

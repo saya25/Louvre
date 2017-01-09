@@ -166,6 +166,13 @@ class Back
         }
         return $commande;
     }
+
+    public function paiementCommande()
+    {
+        $commande = $this->session->get('commande');
+
+        return $commande;
+    }
 }
 
 

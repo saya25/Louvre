@@ -50,28 +50,37 @@ class TicketController extends Controller
         return $this->redirectToRoute('saya25_louvre_billetterie');
     }
 
-
     public function paiementAction(Request $request)
     {
+        $commande = $this->get("core.back")->paiementCommande();
+
         if ($request->isMethod('POST')) {
             $token = $request->get('stripeToken');
 
             \Stripe\Stripe::setApiKey($this->getParameter("private_key"));
 
             \Stripe\Charge::create(array(
-                "amount" => "",
+                "amount" => $commande->getTotal()*100,
                 "currency" => "eur",
                 "source" => $token,
                 "description" => "First test charge!"
             ));
 
-            $request->getSession()->getFlashBag()->add('info', 'Paiement accepté');
+            return $this->redirectToRoute('saya25_louvre_confirmation');
         }
         return $this->render('saya25LouvreBundle:Ticket:paiement.html.twig', array(
+            'commande'  => $commande,
             'public_key' =>  $this->getParameter("public_key"),
-
         ));
     }
+
+
+
+
+
+
+
+
 
     public function confirmationAction()
     {
