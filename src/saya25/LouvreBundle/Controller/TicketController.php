@@ -99,9 +99,9 @@ class TicketController extends Controller
         return $this->render('saya25LouvreBundle:Ticket:contact.html.twig');
     }
 
-    public function cgvAction()
+    public function mentionslegalesAction()
     {
-        return $this->render('saya25LouvreBundle:Ticket:cgv.html.twig');
+        return $this->render('saya25LouvreBundle:Ticket:mentionslegales.html.twig');
     }
 
 
