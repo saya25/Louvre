@@ -4,14 +4,10 @@
 
 {% block saya25blog_body %}
 
-
-
     <form action="{{ path('saya25_louvre_deletebillet')}}" method="post">
 
-
-        {# Ici j'ai écrit le bouton de soumission à la main #}
         <input type="submit" value="Supprimer" class="btn btn-danger" />
-        {# Ceci va générer le champ CSRF #}
+
         {{ form_rest(form) }}
     </form>
 

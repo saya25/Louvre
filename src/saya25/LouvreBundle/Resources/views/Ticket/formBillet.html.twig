@@ -3,24 +3,17 @@
     {% extends "saya25LouvreBundle::layout.html.twig" %}
     {% block saya25blog_body %}
 
-
-    <h3>Réservation de billets </h3>
+    <h3 class="titleBilletterie">{{'Réservation de billets'|trans}} </h3>
         <div class="well">
             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-            {# Les erreurs générales du formulaire. #}
-
+            {# Erreurs du formulaire #}
             {{ form_errors(form) }}
-            {{ form_row(form) }}
 
-            <div id="prix"> </div>
-            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_label(form.billet) }}
+
+            {# Fermeture du formulaire #}
             {{ form_end(form) }}
-        </div>
-
-
-    <div class="well">
-
-    <a href="#" id="add_billet" class="btn btn-default">Billet supplémentaire</a>
+    <a href="#" id="add_billet" class="btn btn-primary btn-xs">{{'Billet supplémentaire'|trans}}</a>
     </div>
 
 
@@ -49,7 +42,7 @@
                 function addBillet($container) {
 
                     var template = $container.attr('data-prototype')
-                            .replace(/__name__label__/g, 'Billet n°' + (index+1))
+                            .replace(/__name__label__/g, '')
                             .replace(/__name__/g,        index)
                         ;
 
@@ -63,7 +56,7 @@
 
                 function addDeleteLink($prototype) {
 
-                    var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                    var $deleteLink = $('<a href="#" class="btn btn-danger btn-xs" id="deleteOneBillet">{{'Supprimer'|trans}}</a>');
                     $prototype.append($deleteLink);
 
                     $deleteLink.click(function(e) {
@@ -75,20 +68,5 @@
                     }
                 });
         </script>
-
-
-
-       
-
-
-
-
-
-        <a href="{{path('saya25_louvre_commande')}}"> Poursuivre </a>
-
 {% endblock %}
-
-
-    
-
 

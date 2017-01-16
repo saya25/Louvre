@@ -3,8 +3,6 @@
 namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * Billet
@@ -15,17 +13,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Billet
 {
 
-    CONST BILLET_GRAUTIT ='gratuit';
-    CONST BILLET_ENFANT = 'enfant';
-    CONST BILLET_NORMAL = 'normal';
-    CONST BILLET_SENIOR = 'sénior';
-    CONST BILLET_REDUIT = 'réduit';
+    CONST TARIF_GRAUTIT ='gratuit';
+    CONST TARIF_ENFANT = 'enfant';
+    CONST TARIF_NORMAL = 'normal';
+    CONST TARIF_SENIOR = 'sénior';
+    CONST TARIF_REDUIT = 'réduit';
 
-    CONST TARIF_GRATUIT = 0;
-    CONST TARIF_ENFANT = 8;
-    CONST TARIF_NORMAL = 16;
-    CONST TARIF_SENIOR = 12;
-    CONST TARIF_REDUIT = 10;
+    CONST BILLET_GRATUIT = 0;
+    CONST BILLET_ENFANT = 8;
+    CONST BILLET_NORMAL = 16;
+    CONST BILLET_SENIOR = 12;
+    CONST BILLET_REDUIT = 10;
 
     /**
      * @var int
@@ -49,8 +47,6 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=150, nullable=false)
-     * @Assert\Length(min=3, minMessage="Le nom saisi n'est pas valide")
-     * @Assert\Length(max=25, maxMessage="Le nom saisi n'est pas valide")
      */
     private $nom;
 
@@ -68,8 +64,6 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=150, nullable=false)
-     * @Assert\Length(min=3, minMessage="Le prénom saisi est trop court")
-     * @Assert\Length(max=20, maxMessage="Le prenom saisi n'est pas valide")
      */
     private $prenom;
 
@@ -80,6 +74,14 @@ class Billet
      * @ORM\Column(name="dateNaissance", type="date", nullable=false)
      */
     private $dateNaissance;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateEntree", type="datetime", nullable=true)
+     */
+    private $dateEntree;
 
 
     /**
@@ -105,10 +107,6 @@ class Billet
      * @ORM\Column(name="Tarif", type="string", length=255)
      */
     private $tarif;
-
-
-
-
 
 
      /**
@@ -320,4 +318,28 @@ class Billet
     }
 
 
+
+    /**
+     * Set tarif
+     *
+     * @param string $tarif
+     *
+     * @return Billet
+     */
+    public function setTarif($tarif)
+    {
+        $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    /**
+     * Get tarif
+     *
+     * @return string
+     */
+    public function getTarif()
+    {
+        return $this->tarif;
+    }
 }

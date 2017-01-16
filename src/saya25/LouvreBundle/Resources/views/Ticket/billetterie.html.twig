@@ -3,35 +3,41 @@
 {% extends "saya25LouvreBundle::layout.html.twig" %}
 
 {% block saya25blog_body %}
-
-    <a href=" {{path('saya25_louvre_accueil') }}" class="glyphicon glyphicon-arrow-left"> Accueil </a>
-
+    <div class="container">
+        <div class="row">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Détail de la commande</li>
-        <li class="breadcrumb-item"><a href=" {{ path('saya25_louvre_commande') }}">Coordonnées</a></li>
-        <li class="breadcrumb-item"><a href=" {{  path('saya25_louvre_paiement') }}">Paiement</a></li>
-        <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
+        <div class="col-sm-1 col-xs-1"><p><a href=" {{path('saya25_louvre_accueil') }}" class="glyphicon glyphicon-arrow-left btn-xs btn btn-primary btn-circle" id="retourAccueil"> </a></p></div>
+        <li class="breadcrumb-item active" id="brd1">{{'Détail de la commande'|trans}}</li>
+        <li class="breadcrumb-item" id="brd2"><a href="#">{{'Coordonnées'|trans}}</a></li>
+        <li class="breadcrumb-item" id="brd3"><a href="#">{{'Paiement'|trans}}</a></li>
+        <li class="breadcrumb-item" id="brd4"><a href="#">Confirmation</a></li>
     </ol>
-
-    <h1> Recapitulatif </h1>
-          <h1>Finalisez votre réservation</h1>
-    <br />
-    <br />
-    {% set commande = app.session.get('commande') %}
-        {% if commande.getBillet() is defined %}
-            {% for billet in commande.getBillet() %}
-                {% if billet.status == 1 %}
-                    <p id="journee"> Billet journée</p>
-                    {{ billet.prenom }}
-                    {{ billet.nom }}
-                {% elseif billet.status == 0 %}
-                    <p id="demiJournee"> Billet demi-journée</p>
-                    {{ billet.prenom }}
-                    {{ billet.nom }}
+        </div>
+    <div class="row" id="billetterieForm">
+        <div class="col-sm-6"> {{ include("saya25LouvreBundle:Ticket:formBillet.html.twig") }} </div>
+        <div class="col-sm-6"><h1 class="titleBilletterie">{{'Récapitulatif'|trans}}</h1></div>
+        <div class="row">
+            <div class="col-sm-offset-7"><img class="louvreImage" src="{{ asset('bundles/saya25Louvre/images/louvre.jpg') }}">
+                {% set commande = app.session.get('commande') %}
+                {% if commande.getBillet() is defined %}
+                    {% for billet in commande.getBillet() %}
+                        {% if billet.status == 1 %}
+                            <p class="journee">{{'Billet journée'|trans}}</p>
+                            <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                            <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
+                        {% elseif billet.status == 0 %}
+                            <p class="demiJournee">{{'Billet demi-journée'|trans}} </p>
+                            <p>  {{ billet.prenom }} {{ billet.nom }} </p>
+                            <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs">{{'Supprimer le(s) billet(s)'|trans}} </a></p>
+                    <a href=" {{ path('saya25_louvre_commande') }}" class="btn btn-primary glyphicon glyphicon-arrow-right">{{'Poursuivre'|trans}} </a>
                 {% endif %}
-            {% endfor %}
-            <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger"> Supprimer les billets </a></p>
-        {% endif %}
-
-    {{ include("saya25LouvreBundle:Ticket:formBillet.html.twig") }}
-    {% endblock %}
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+    </div>
+{% endblock %}

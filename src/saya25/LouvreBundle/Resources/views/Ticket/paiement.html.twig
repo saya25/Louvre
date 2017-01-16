@@ -3,52 +3,63 @@
 {% extends "saya25LouvreBundle::layout.html.twig" %}
 
 {% block saya25blog_body %}
-
-
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href=" {{ path('saya25_louvre_billetterie') }}">Détails de la commande</a></li>
-        <li class="breadcrumb-item"><a href=" {{ path('saya25_louvre_commande') }}">Coordonnées</a></li>
-        <li class="breadcrumb-item active">Paiement</li>
-        <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
-    </ol>
-
-    <div>
-    	<h2>Méthode de paiement</h2>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href=" {{ path('saya25_louvre_billetterie') }}">{{'Détail de la commande'|trans}}</a></li>
+            <li class="breadcrumb-item"><a href=" {{ path('saya25_louvre_commande') }}">{{'Coordonnées'|trans}}</a></li>
+            <li class="breadcrumb-item active">{{'Paiement'|trans}}</li>
+            <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
+        </ol>
+        <div class="row" id="billetterieForm">
+            <div class="col-sm-6"><h1 class="titlePaiement">{{'Paiement'|trans}} </h1>
+            <div class="row">
+            <div class="col-sm-6">
+                <form action="{{ path('saya25_louvre_paiement') }}" method="POST" id="boutonPaiement">
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="{{ public_key }}"
+                            data-currency="eur"
+                            data-amount="{{ commande.total *100 }}"
+                            data-name="Billet(s) musée du Louvre"
+                            data-image="http://www.france-hotel-guide.com/fr/blog/wp-content/uploads/2014/09/musee-louvre.jpg"
+                            data-locale="auto"
+                            data-zip-code="true">
+                    </script>
+                </form>
+            </div>
+            </div>
+            </div>
+            <div class="col-sm-6"><h1 class="titlePaiement">{{'Récapitulatif'|trans}}</h1> </div>
+            <div class="row">
+                <div class="col-sm-offset-7"><img class="louvreImage" src="{{ asset('bundles/saya25Louvre/images/louvre.jpg') }}">
+                    {% set commande = app.session.get('commande') %}
+                    {% if commande.getBillet() is defined %}
+                        {% for billet in commande.getBillet() %}
+                            {% if billet.status == 1 %}
+                                <p class="journee">{{'Billet journée'|trans}}</p>
+                                <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                <p> {{'Billet :'|trans}}{{ billet.tarif }} </p>
+                                <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% if billet.tarifReduit  %}
+                                    <p><b>{{'Ce tarif exige la présentation d\'un justificatif'|trans}}</b></p>
+                                    {%  endif %}
+                            {% elseif billet.status == 0 %}
+                                <p class="demiJournee">{{'Billet demi-journée'|trans}} </p>
+                                <p>  {{ billet.prenom }} {{ billet.nom }} </p>
+                                <p>  {{'Billet :'|trans}}{{ billet.tarif }} </p>
+                                <p>  {{'Prix :'|trans}} {{ billet.prix }} € </p>
+                                {% if billet.tarifReduit  %}
+                                    <p><b>{{'Ce tarif exige la présentation d\'un justificatif'|trans}}</b></p>
+                                {%  endif %}
+                            {% endif %}
+                         {% endfor %}
+                        <p><b>{{'Prix total de la commande :'|trans}} {{ commande.total }} € </b></p>
+                    <p>{{'Date de la visite'|trans}} </p> {{ commande.dateEntree|date("m/d/Y") }}
+                            <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs">{{'Annuler la commande'|trans}} </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-
-
-<form action="{{ path('saya25_louvre_paiement') }}" method="POST">
-    <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="{{ public_key }}"
-            data-amount="{{ commande.total *100 }}"
-            data-name="Billet(s) musée du Louvre"
-            data-image="http://www.france-hotel-guide.com/fr/blog/wp-content/uploads/2014/09/musee-louvre.jpg"
-            data-locale="auto"
-            data-zip-code="true">
-    </script>
-</form>
-
-    {% set commande = app.session.get('commande') %}
-    {% if commande.getBillet() is defined %}
-        {% for billet in commande.getBillet() %}
-            {% if billet.status == 1 %}
-                <p id="journee"> Billet journée</p>
-                {{ billet.prenom }}
-                {{ billet.nom }}
-                <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
-                <p> Billet :{{ billet.tarif }} </p>
-                <p> Prix : {{ billet.prix }} € </p>
-
-            {% elseif billet.status == 0 %}
-                <p id="demiJournee"> Billet demi-journée</p>
-                {{ billet.prenom }}
-                {{ billet.nom }}
-                <p>{{ billet.dateNaissance|date("m/d/Y") }} </p>
-                <p> Billet :{{ billet.tarif }} </p>
-                <p> Prix : {{ billet.prix }} € </p>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
 {% endblock %}
+

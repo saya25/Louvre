@@ -4,8 +4,8 @@ namespace saya25\LouvreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use saya25\LouvreBundle\Entity\Billet;
+use saya25\LouvreBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\Request;
-
 
 
 class TicketController extends Controller
@@ -24,10 +24,7 @@ class TicketController extends Controller
     {
         $form = $this->get("core.back")->startCommande($request);
 
-        $listeBillets =  $this->getDoctrine()->getManager()->getRepository('saya25LouvreBundle:Billet')->findAll();
-
         return $this->render('saya25LouvreBundle:Ticket:billetterie.html.twig', array(
-            'listeBillets' => $listeBillets,
             'form' => $form->createView(),
 
         ));
@@ -50,6 +47,8 @@ class TicketController extends Controller
         return $this->redirectToRoute('saya25_louvre_billetterie');
     }
 
+
+
     public function paiementAction(Request $request)
     {
         $commande = $this->get("core.back")->paiementCommande();
@@ -61,26 +60,24 @@ class TicketController extends Controller
 
             \Stripe\Charge::create(array(
                 "amount" => $commande->getTotal()*100,
-                "currency" => "eur",
+                "currency" => "EUR",
                 "source" => $token,
                 "description" => "First test charge!"
             ));
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($commande);
             $em->flush();
+
+            $this->get('app.mail')->sendMail();
+
             return $this->redirectToRoute('saya25_louvre_confirmation');
+
         }
         return $this->render('saya25LouvreBundle:Ticket:paiement.html.twig', array(
             'commande'  => $commande,
             'public_key' =>  $this->getParameter("public_key"),
         ));
     }
-
-
-
-
-
 
 
 
@@ -94,7 +91,7 @@ class TicketController extends Controller
     }
 
 
-      public function contactAction()
+    public function contactAction()
     {
         return $this->render('saya25LouvreBundle:Ticket:contact.html.twig');
     }
@@ -103,8 +100,6 @@ class TicketController extends Controller
     {
         return $this->render('saya25LouvreBundle:Ticket:mentionslegales.html.twig');
     }
-
-
 
 }
 

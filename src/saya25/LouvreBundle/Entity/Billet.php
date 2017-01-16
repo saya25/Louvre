@@ -4,6 +4,7 @@ namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Billet
  *
@@ -74,7 +75,6 @@ class Billet
      * @ORM\Column(name="dateNaissance", type="date", nullable=false)
      */
     private $dateNaissance;
-
 
     /**
      * @var boolean

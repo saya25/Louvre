@@ -5,23 +5,23 @@
 {% block saya25blog_body %}
 
     <div class="container">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Détails de la commande</li>
-            <li class="breadcrumb-item active">Commande</li>
-            <li class="breadcrumb-item active">Paiement</li>
-            <li class="breadcrumb-item"> Confirmation</li>
-        </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">{{'Détails de la commande'|trans}}</li>
+        <li class="breadcrumb-item active">{{'Commande'|trans}}</li>
+        <li class="breadcrumb-item active">{{'Paiement'|trans}}</li>
+        <li class="breadcrumb-item">{{'Confirmation'|trans}}</li>
+    </ol>
         {% if commande.getBillet() is defined %}
             <p class="glyphicon glyphicon-ok"> </p>
-            <p>Votre paiement a été accepter</p>
-            <p> Vous allez recevoir un e-mail de confirmation à l'adresse suivante : <strong>{{ commande.email }}</strong></p>
-            <h2> Effectuer une autre commande ?</h2>
-            <p><a class="btn btn-primary" href="{{ path('saya25_louvre_billetterie') }}">Nouvelle commande </a></p>
+            <p>{{'Votre paiement a été accepter'|trans}}</p>
+            <p>{% trans %}Vous allez recevoir un e-mail de confirmation à l'adresse suivante : {% endtrans %}<strong>{{ commande.email }}</strong></p>
+            <h2>{{'Effectuer une autre commande ?'|trans}}</h2>
+            <p><a class="btn btn-primary" href="{{ path('saya25_louvre_billetterie') }}">{{'Nouvelle commande'|trans}} </a></p>
             {{ app.session.clear }}
         {% else %}
             <p class="glyphicon glyphicon glyphicon-remove"> </p>
-            <p>Votre paiement a échouer, veuillez réessayer</p>
-            <p><a class="btn btn-primary" href="{{ path('saya25_louvre_paiement') }}">Effectuer un nouveau paiement</a></p>
+            <p>{{'Votre paiement a échouer, veuillez réessayer'|trans}}</p>
+            <p><a class="btn btn-primary" href="{{ path('saya25_louvre_billetterie') }}">{{'Réessayer'|trans}}</a></p>
         {% endif %}
     </div>
 {% endblock %}

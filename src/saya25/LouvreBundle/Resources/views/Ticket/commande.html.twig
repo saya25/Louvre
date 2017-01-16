@@ -3,78 +3,83 @@
 {% extends "saya25LouvreBundle::layout.html.twig" %}
 
 {% block saya25blog_body %}
-
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href=" {{  path('saya25_louvre_billetterie') }}">Billetterie</a></li></li>
-        <li class="breadcrumb-item active">Coordonnées</li>
-        <li class="breadcrumb-item"><a href=" {{  path('saya25_louvre_paiement') }}">Paiement</a></li>
-        <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
-    </ol>
-
-    <div>
-    	<h1>Vos informations personnelles</h1> 
-    </div>
-    <div>
- 		<h1>Récapitulatif</h1>
-
-        {% set commande = app.session.get('commande') %}
-        {% if commande.getBillet() is defined %}
-            {% for billet in commande.getBillet() %}
-                {% if billet.status == 1 %}
-                    <p id="journee"> Billet journée</p>
-                    {{ billet.prenom }}
-                    {{ billet.nom }}
-                {% elseif billet.status == 0 %}
-                    <p id="demiJournee"> Billet demi-journée</p>
-                    {{ billet.prenom }}
-                    {{ billet.nom }}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-	</div>
-
-    <script>
-        $(document).ready(function() {
-        	$('#saya25_louvrebundle_commande_dateEntree').attr('readonly', true);
-            var disableddates = ["25-12-2016", "01-05-2017", "01-11-2017", "25-12-2017"];
-
-            function DisableSpecificDates(date) {
-                var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
-                return [disableddates.indexOf(string) == -1];
-            }
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href=" {{  path('saya25_louvre_billetterie') }}">{{'Détail de la commande'|trans}}</a></li></li>
+            <li class="breadcrumb-item active">{{'Coordonnées'|trans}}</li>
+            <li class="breadcrumb-item"><a href="">{{'Paiement'|trans}}</a></li>
+            <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
+        </ol>
+        <div class="row" id="commandeForm">
+            <div class="col-sm-6"> {{ include("saya25LouvreBundle:Ticket:formCommande.html.twig") }} </div>
+            <div class="col-sm-6"><h1 class="titleCoordonnees">{{'Récapitulatif'|trans}}</h1></div>
+            <div class="row">
+                <div class="col-sm-offset-7"><img class="louvreImage" src="{{ asset('bundles/saya25Louvre/images/louvre.jpg') }}">
+                    {% set commande = app.session.get('commande') %}
+                    {% if commande.getBillet() is defined %}
+                        {% for billet in commande.getBillet() %}
+                            {% if billet.status == 1 %}
+                                <p class="journee">{{'Billet journée'|trans}}</p>
+                                <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
+                            {% elseif billet.status == 0 %}
+                                <p class="demiJournee">{{'Billet demi-journée'|trans}} </p>
+                                <p>  {{ billet.prenom }} {{ billet.nom }} </p>
+                                <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        <p> <a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs">{{'Supprimer le(s) billet(s)'|trans}} </a></p>
+                    {% endif %}
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+        <script>
+            $(document).ready(function() {
 
 
-            $(function() {
+                $('#saya25_louvrebundle_commande_dateEntree').attr('readonly', true);
+
+                var disableddates = ["01-05-2017", "01-11-2017", "25-12-2017"];
+
+                //bloquer jour fériés
+                function DisableSpecificDates(date) {
+                    var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
+                    return [disableddates.indexOf(string) == -1];
+                }
+
+                //bloquer dimanche
                 $("#saya25_louvrebundle_commande_dateEntree").datepicker({
-                    beforeShowDay: DisableSpecificDates,
-                    minDate : 0,
+                    beforeShowDay: function(date) {
+                        var day = date.getDay();
+                        return [(day != 0), ''];
+                    }
+                });
+
+                $( function() {
+                    $( "#saya25_louvrebundle_commande_dateEntree" ).datepicker();
+                    $.datepicker.regional['fr'] = {
+                        closeText: 'Fermer',
+                        prevText: 'Précédent',
+                        nextText: 'Suivant',
+                        currentText: 'Aujourd\'hui',
+                        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+                        monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+                        dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+                        dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
+                        dayNamesMin: ['D','L','M','M','J','V','S'],
+                        weekHeader: 'Sem.',
+                        dateFormat: 'dd/mm/yy',
+                        firstDay: 1,
+                        isRTL: false,
+                        showMonthAfterYear: false,
+                        beforeShowDay: DisableSpecificDates,
+                        minDate: 0,
+                        yearSuffix: ''},
+                        $.datepicker.setDefaults($.datepicker.regional['fr']);
                 });
             });
-
-            $( function() {
-                $( "#saya25_louvrebundle_commande_dateEntree" ).datepicker();
-                $.datepicker.regional['fr'] = {
-                    closeText: 'Fermer',
-                    prevText: 'Précédent',
-                    nextText: 'Suivant',
-                    currentText: 'Aujourd\'hui',
-                    monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-                    monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-                    dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-                    dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-                    dayNamesMin: ['D','L','M','M','J','V','S'],
-                    weekHeader: 'Sem.',
-                    dateFormat: 'dd/mm/yy',
-                    firstDay: 1,
-                    isRTL: false,
-                    showMonthAfterYear: false,
-                    yearSuffix: ''};
-                $.datepicker.setDefaults($.datepicker.regional['fr']);
-            });
-        });
-    </script>
-
-    <div>
-        {{ include("saya25LouvreBundle:Ticket:formCommande.html.twig") }}
+        </script>
     </div>
 {% endblock %}

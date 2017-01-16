@@ -30,6 +30,7 @@ class CommandeType extends AbstractType
                 'format' => 'dd/MM/yyyy',
             ))
             ->add('nom', TextType::class, array(
+                'label_format'  => '%name%',
                 'constraints' => array(
                     new NotBlank(),
                     new Type('string'),
@@ -42,6 +43,7 @@ class CommandeType extends AbstractType
                 ),
             ))
             ->add('prenom', TextType::class, array(
+                'label_format'  => '%name%',
                 'constraints' => array(
                     new NotBlank(),
                     new Type('string'),

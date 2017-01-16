@@ -12,7 +12,7 @@ use saya25\LouvreBundle\Form\CommandeType;
 use saya25\LouvreBundle\Form\Billet;
 use saya25\LouvreBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Stripe\Error\Card;
+
 
 
 
@@ -53,21 +53,6 @@ class Back
      */
     protected $router;
 
-
-    /**
-     * @var Stripe;
-     */
-    protected $stripe;
-
-    /**
-     * Back constructor.
-     * @param EntityManager $doctrine
-     * @param FormFactory $form
-     * @param Session $session
-     * @param Price $price
-     * @param Router $router
-     * @param Stripe $stripe
-     */
 
     public function __construct(EntityManager $doctrine, FormFactory $form, Session $session, Price $price, Router $router)
     {
@@ -112,7 +97,6 @@ class Back
        return $form;
     }
 
-
     public function paiementCommande()
     {
         $commande = $this->session->get('commande');
@@ -126,6 +110,9 @@ class Back
 
         return $commande;
     }
+
+
+
 }
 
 

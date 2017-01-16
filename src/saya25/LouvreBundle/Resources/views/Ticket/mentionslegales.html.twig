@@ -4,81 +4,82 @@
 
 {% block saya25blog_body %}
     <div class="container">
-     <div class="col-sm-12"><p id="siteFictif">Ce site a été réaliser dans le cadre d'un projet informatique étudiant, il n'est pas affilier avec le site du musée du Louvre</p></div>
+     <div class="col-sm-12"><p id="siteFictif">{% trans %}Ce site a été réaliser dans le cadre d'un projet informatique étudiant, il n'est pas affilier avec le site du musée du Louvre {% endtrans %}</p></div>
      <div class="row">
-      <div class="col-sm-4 col-xs-12"><h3 class="titleCgv">MENTIONS LÉGALES DU SITE</h3>
+      <div class="col-sm-4 col-xs-12"><h3 class="titleMentionsLegales">{{'MENTIONS LÉGALES DU SITE'|trans}}</h3>
       </div>
      </div>
      <h4> www.clement-opc.fr/projet_3</h4>
-   <p> Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la
+   <p>{% trans %}Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la
     Confiance dans l'économie numérique, dite L.C.E.N., il est porté à la connaissance des utilisateurs et
-    visiteurs du site www.clement-opc.fr/projet_3 les présentes mentions légales.</p>
-     <p>Le site www.clement-opc.fr/projet_3 est accessible à l'adresse suivante :</p>
-    <p>http://www.clement-opc.fr/projet_3 (ci-après "le Site"). L'accès et l'utilisation du Site sont soumis aux
-     présentes " Mentions légales" détaillées ci-après ainsi qu'aux lois et/ou règlements applicables.</p>
-   <p>La connexion, l'utilisation et l'accès à ce Site impliquent l'acceptation intégrale et sans réserve de
-    l'internaute de toutes les dispositions des présentes Mentions Légales.</p>
+    visiteurs du site www.clement-opc.fr/projet_3 les présentes mentions légales.{% endtrans %}</p>
+     <p>{% trans %}Le site www.clement-opc.fr/projet_3 est accessible à l'adresse suivante :{% endtrans %}</p>
+    <p>{% trans %}http://www.clement-opc.fr/projet_3 (ci-après "le Site"). L'accès et l'utilisation du Site sont soumis aux
+     présentes " Mentions légales" détaillées ci-après ainsi qu'aux lois et/ou règlements applicables.{% endtrans %}</p>
+     <p>{% trans %}La connexion, l'utilisation et l'accès à ce Site impliquent l'acceptation intégrale et sans réserve de
+      l'internaute de toutes les dispositions des présentes Mentions Légales.{% endtrans %}</p>
      <div class="row">
-      <div class="col-sm-4 col-xs-12"><h4 class="titleCgv">ARTICLE 1 - INFORMATIONS LÉGALES</h4></div>
+      <div class="col-sm-4 col-xs-12"><h4 class="titleMentionsLegales">{{'ARTICLE 1 - INFORMATIONS LÉGALES'|trans}}</h4></div>
      </div>
-    <p>En vertu de l'Article 6 de la Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie
-    numérique, il est précisé dans cet article l'identité des différents intervenants dans le cadre de sa
-     réalisation et de son suivi.</p>
-     <p>Le site www.clement-opc.fr/projet_3 est édité par :</p>
-     <strong>Clément MICHELIN</strong>
-     <p>domicilié à l'adresse suivante : 33 rue des tilleuls.</p>
-     <p>Téléphone : 06 33 34 35 36</p>
-     <p>Adresse e-mail : michelin.clement@gmail.com</p>
-     <p>ci après " l'Éditeur "</p>
-     <p>Le Directeur de publication est :</p>
-     <strong>Clément MICHELIN</strong>
-     <p>Adresse e-mail de contact : michelin.clement@gmail.com</p>
-     <p>ci après " le Directeur de publication "</p>
-     <p>Le site www.clement-opc.fr/projet_3 est hébergé par :</p>
-     <p>OVH</p>
-     <p>dont le siège est situé à l'adresse suivante : 2 rue Kellermann 59100 Roubaix</p>
-     <p>Téléphone : 1007</p>
-     <p>Adresse e-mail : support@ovh.com.</p>
-     <p>ci après " l'Hébergeur "</p>
-    <p>Sont considérés comme utilisateurs tout les internautes qui naviguent, lisent, visionnent et utilisent le
-      site www.clement-opc.fr/projet_3.</p>
-     <p>ci après les " Utilisateurs "</p>
+     <p>{% trans %}En vertu de l'Article 6 de la Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie
+      numérique, il est précisé dans cet article l'identité des différents intervenants dans le cadre de sa
+      réalisation et de son suivi.{% endtrans %}</p>
+     <p>{{'Le site www.clement-opc.fr/projet_3 est édité par :'|trans}}</p>
+     <strong>{{'Clément MICHELIN'|trans}}</strong>
+     <p>{{'domicilié à l\'adresse suivante : 33 rue des tilleuls.'|trans}}</p>
+     <p>{{'Téléphone : 06 33 34 35 36'|trans}}</p>
+     <p>{{'Adresse e-mail : michelin.clement@gmail.com'|trans}}</p>
+     <p>{{'ci après " l\'Éditeur "'|trans}}</p>
+     <p>{{'Le Directeur de publication est :'|trans}}</p>
+     <strong>{{'Clément MICHELIN'|trans}}</strong>
+     <p>{{'Adresse e-mail de contact : michelin.clement@gmail.com'|trans}}</p>
+     <p>{{'ci après " le Directeur de publication"'|trans}}</p>
+     <p>{{'Le site www.clement-opc.fr/projet_3 est hébergé par :'|trans}}</p>
+     <p>{{'ci après "l\'Hébergeur"'|trans}} </p>
+     <p>{{'OVH'|trans}}</p>
+     <p>{% trans %}dont le siège est situé à l'adresse suivante : 2 rue Kellermann 59100 Roubaix{% endtrans %}</p>
+     <p>{{'Téléphone : 1007'|trans}}</p>
+     <p>{{'Adresse e-mail : support@ovh.com.'|trans}}</p>
+     <p>{% trans %}Sont considérés comme utilisateurs tout les internautes qui naviguent, lisent, visionnent et utilisent le
+      site www.clement-opc.fr/projet_3.{% endtrans %}</p>
+     <p>{{'ci après les " Utilisateurs "'|trans}}</p>
      <div class="row">
-      <div class="col-sm-4 col-xs-12"><h4 class="titleCgv">ARTICLE 2 - ACCESSIBILITÉ</h4>
-      </div>
-      </div>
-    <p>Le Site est par principe accessible aux utilisateurs 24/24h et 7/7j, sauf interruption, programmée ou
-    non, pour des besoins de maintenance ou en cas de force majeure.
-    En cas d'impossibilité d'accès au Site, celui-ci s'engage à faire son maximum afin d'en rétablir l'accès.
-    Le Site ne saurait être tenu pour responsable de tout dommage, quelle qu'en soit la nature, résultant de
-     son indisponibilité.</p>
-     <div class="row">
-      <div class="col-sm-4 col-xs-12"><h4 class="titleCgv">ARTICLE 3 - COLLECTE DE DONNÉES ET LOI INFORMATIQUE ET LIBERTÉS</h4>
+      <div class="col-sm-4 col-xs-12"><h4 class="titleMentionsLegales">{% trans %}ARTICLE 2 - ACCESSIBILITÉ{% endtrans %}</h4>
       </div>
      </div>
-    <p>Ce site est déclaré à la Commission Nationale Informatique et Libertés (CNIL)
-    En outre, il est conforme aux dispositions de la Loi 78-17 du 6 janvier 1978 relative à l'informatique,
-    aux fichiers et aux libertés. En vertu de celle-ci l'Utilisateur bénéficie notamment d'un droit
-    d'opposition (art. 32 et 38), d'accès (art. 38 et 39) et de rectification (art. 40) des données le
-     concernant.</p>
-    <p>Pour faire usage de celui-ci, l'Utilisateur doit s'adresser à l'Éditeur en le contactant à l'adresse suivante
-    : michelin.clement@gmail.com, ou par courrier adressé au domicile de l'Éditeur en précisant ses nom,
-     prénom(s), adresse et adresse(s) e-mail.</p>
+     <p>{% trans %}Le Site est par principe accessible aux utilisateurs 24/24h et 7/7j, sauf interruption, programmée ou
+      non, pour des besoins de maintenance ou en cas de force majeure.
+      En cas d'impossibilité d'accès au Site, celui-ci s'engage à faire son maximum afin d'en rétablir l'accès.
+      Le Site ne saurait être tenu pour responsable de tout dommage, quelle qu'en soit la nature, résultant de
+      son indisponibilité.{% endtrans %}</p>
      <div class="row">
-      <div class="col-sm-4 col-xs-12"><h4 class="titleCgv">ARTICLE 4 - LOI APPLICABLE ET JURIDICTION</h4>
+      <div class="col-sm-4 col-xs-12"><h4 class="titleMentionsLegales">{% trans %}ARTICLE 3 - COLLECTE DE DONNÉES ET LOI INFORMATIQUE ET LIBERTÉS{% endtrans %}</h4>
       </div>
      </div>
-    <p>Les présentes Mentions Légales sont régies par la loi française. En cas de différend et à défaut
-    d'accord amiable, le litige sera porté devant les tribunaux français conformément aux règles de
-     compétence en vigueur.</p>
+     <p>{% trans %}Ce site est déclaré à la Commission Nationale Informatique et Libertés (CNIL)
+      En outre, il est conforme aux dispositions de la Loi 78-17 du 6 janvier 1978 relative à l'informatique,
+      aux fichiers et aux libertés. En vertu de celle-ci l'Utilisateur bénéficie notamment d'un droit
+      d'opposition (art. 32 et 38), d'accès (art. 38 et 39) et de rectification (art. 40) des données le
+      concernant.{% endtrans %}</p>
+     <p>{% trans %}Pour faire usage de celui-ci, l'Utilisateur doit s'adresser à l'Éditeur en le contactant à l'adresse suivante
+      : michelin.clement@gmail.com, ou par courrier adressé au domicile de l'Éditeur en précisant ses nom,
+      prénom(s), adresse et adresse(s) e-mail.{% endtrans %}</p>
      <div class="row">
-      <div class="col-sm-4 col-xs-12"><h4 class="titleCgv">ARTICLE 5 - CONTACT</h4>
+      <div class="col-sm-4 col-xs-12"><h4 class="titleMentionsLegales">{% trans %}ARTICLE 4 - LOI APPLICABLE ET JURIDICTION{% endtrans %}</h4>
       </div>
      </div>
-    <p>Pour tout signalement de contenus ou d'activités illicites, l'Utilisateur peut contacter l'Éditeur à
-    l'adresse suivante : michelin.clement@gmail.com, ou par courrier recommandé avec accusé de réception adressé à
-    l'Éditeur aux coordonnées précisées dans les présentes mentions légales.
-    Le site www.clement-opc.fr/projet_3 vous souhaite une excellente navigation !
-        </p>
+     <p>{% trans %}Les présentes Mentions Légales sont régies par la loi française. En cas de différend et à défaut
+      d'accord amiable, le litige sera porté devant les tribunaux français conformément aux règles de
+      compétence en vigueur.{% endtrans %}</p>
+     <div class="row">
+      <div class="col-sm-4 col-xs-12"><h4 class="titleMentionsLegales">ARTICLE 5 - CONTACT</h4>
+      </div>
+     </div>
+     <p>{% trans %}Pour tout signalement de contenus ou d'activités illicites, l'Utilisateur peut contacter l'Éditeur à
+      l'adresse suivante : michelin.clement@gmail.com, ou par courrier recommandé avec accusé de réception adressé à
+      l'Éditeur aux coordonnées précisées dans les présentes mentions légales.
+      Le site www.clement-opc.fr/projet_3 vous souhaite une excellente navigation !{% endtrans %}
+     </p>
+     <a href="{{ path('saya25_louvre_accueil') }}" class="btn btn-primary">{{'Retour à l\'accueil'|trans}}</a>
     </div>
 {% endblock %}

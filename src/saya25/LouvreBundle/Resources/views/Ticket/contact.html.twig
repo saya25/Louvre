@@ -4,19 +4,28 @@
 
 {% block saya25blog_body %}
 
-
-    <h1>Informations générales </h1>
-    <p> Pour obtenir des informations sur le musée, les services à votre disposition
-        et notre actualité, l'équipe du service de l'accueil est à votre disposition :</p>
-    <h3>Banque d'information du musée :</h3>
-
-    <p> Tél. : <span class="numTel">+33 (0)1 40 20 53 17</span></p>
-    <p> tous les jours, sauf le mardi, de 9h à 18h30 (21h30 les mercredis et vendredis).</p>
-
-    <h3> <a href="http://www.louvre.fr/preparer-sa-visite">Préparer votre visite</a> </h3>
-    <h3>Consultez le plan interactif du Louvre :</h3>
-
-    <h3><a href="http://www.louvre.fr/plan">Plan interractif du Louvre</a></h3>
-    Information handicap
-    <p class="numTel">Tél. : +33 (0)1 40 20 59 90</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12"><h1 id="informationGenerales">{{'Informations générales'|trans}} </h1></div>
+    </div>
+        <p>{% trans %}Pour obtenir des informations sur le musée, les services à votre disposition
+            et notre actualité, l'équipe du service de l'accueil est à votre disposition : {% endtrans %}</p>
+        <div class="preparerVisite"><h3 class="titleContact">{{'Banque d\'information du musée :'|trans}}</h3>
+            <ul>
+                <li>{{'Tél :'|trans}} <span class="numTel">+33 (0)1 40 20 53 17</span></li>
+                <p>{% trans %}tous les jours, sauf le mardi, de 9h à 18h30 (21h30 les mercredis et vendredis).{% endtrans %}</p>
+            </ul>
+             <h3> <a href="http://www.louvre.fr/preparer-sa-visite" class="btn btn-info">{{'Préparer votre visite'|trans}}</a> </h3>
+       </div>
+        <br />
+        <br />
+        <div class="preparerVisite">
+            <h3 class="titleContact" id="consulterPlan">{{'Consultez le plan interactif du Louvre :'|trans}}</h3>
+            <h3><a href="http://www.louvre.fr/plan" class="btn btn-info">{{'Plan interractif du Louvre'|trans}}</a></h3>
+            <p>{{'Information handicap'|trans}}</p>
+            <ul>
+                <li>{{'Tél'|trans}} <span class="numTel">: +33 (0)1 40 20 59 90</span></li>
+            </ul>
+        </div>
+</div>
 {% endblock %}

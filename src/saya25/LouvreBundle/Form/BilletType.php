@@ -29,18 +29,19 @@ class BilletType extends AbstractType
     {
         $builder
             ->add('status', ChoiceType::class, array(
-                'label' =>  'Billet',
+                'label_format'  => '%name%',
                 'choices'   => array(
                     'Journée'  =>  true,
                     'Demi-Journée'  => false,
                 ),
             ))
             ->add('nom', TextType::class, array(
+                'label_format'  => '%name%',
                 'constraints'   => array(
                     new NotBlank(),
                     new Type('string'),
                     new Length(array(
-                        'min'   => 4,
+                        'min'   => 3,
                         'minMessage' => 'Le nom saisi est trop court !',
                         'max'   =>40,
                         'maxMessage' => 'Le nom saisi est trop long!',
@@ -48,6 +49,7 @@ class BilletType extends AbstractType
                 ),
             ))
             ->add('prenom', TextType::class, array(
+                'label_format'  => '%name%',
                 'constraints'   => array(
                     new NotBlank(),
                     new Type('string'),
@@ -59,12 +61,19 @@ class BilletType extends AbstractType
                     )),
                 ),
             ))
-            ->add('pays',           CountryType::class)
-            ->add('dateNaissance',  BirthdayType::class)
+            ->add('pays',           CountryType::class, array(
+                'label_format'  => '%name%',
+            ))
+            ->add('dateNaissance',  BirthdayType::class, array(
+                'label_format'  => '%name%',
+            ))
             ->add('tarifReduit',    CheckboxType::class, array(
+                'label_format'  => '%name%',
                     'required'  => false,
             ))
-            ->add('Ajouter',        SubmitType::class);
+            ->add('Ajouter',        SubmitType::class, array(
+                'label_format'  => '%name%',
+            ));
     }
     
     /**

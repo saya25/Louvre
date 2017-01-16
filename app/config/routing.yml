@@ -1,4 +1,6 @@
 saya25_louvre:
     resource: "@saya25LouvreBundle/Resources/config/routing.yml"
-    prefix:   /louvre
+    prefix:   /{_locale}/louvre
+    requirements:
+        _locale: en|fr
 

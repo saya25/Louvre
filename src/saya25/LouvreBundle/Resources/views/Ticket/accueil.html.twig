@@ -3,15 +3,29 @@
 {% extends "saya25LouvreBundle::layout.html.twig" %}
 
 {% block saya25blog_body %}
-	<a href="{{ path('saya25_louvre_billetterie') }}", class="btn btn-info btn-lg",  id="button_reservation">Réserver</a>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-xs-12"> <img id="logo" src="{{ asset('bundles/saya25Louvre/images/logo.png') }}"> </div>
+        <div class="col-sm-9 col-xs-12"> <h1 class="titleBienvenue">{{'Billetterie officielle musée du Louvre'|trans}}</h1></div>
+            <div class="row">
+                <div class="col-sm-8 col-xs-12"> <a href="{{ path('saya25_louvre_billetterie') }}", class="btn btn-primary btn-lg",  id="bouton_Reservation">{{'Réservation de billets'|trans}}</a> </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12"> <h1 class="titleHome">{{'Tarif/Horaire'|trans}} </h1>
+            <div class="row">
+                <div class="col-sm-12" id="horaireAccueil">
+                    <p id="tarif">{{'Le musée propose plusieurs types de tarifs :'|trans}}</p>
+                    <p>{{'Un tarif'|trans}} <strong>{{'« normal »'|trans}}</strong> {{'à partir de 12 ans à 16 €'|trans}} </p>
+                    <p>{{'Un tarif'|trans}} <strong>{{'« enfant »'|trans}}</strong> {% trans %}à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée est gratuite pour les enfants de moins de 4 ans){% endtrans %}</p>
+                    <p>{{'Un tarif'|trans}} <strong>{{'« sénior »'|trans}}</strong> {{'à partir de 60 ans pour 12  €'|trans}}</p>
+                    <p>{{'Un tarif'|trans}} <strong>{{'« réduit* »'|trans}}</strong> {% trans %}de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…){% endtrans %}</p>
+                    <p> {% trans %}*Ce tarif exige La présentation d'un justificatif pour accéder au musée. {% endtrans %}</p>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6 col-xs-12"> <h1 class="titleHome">{{'Récupérer un billet'|trans}}</h1> </div>
+        </div>
 
-    <div>
-      <h1> Tarif/Horaire </h1>
     </div>
-    <div>
-    	<h1> Récupérer un billet </h1>    	
-    </div>
-
-       {{ include("saya25LouvreBundle:Ticket:piedDePage.html.twig") }}
-
+    {{ include("saya25LouvreBundle:Ticket:piedDePage.html.twig") }}
 {% endblock %}
