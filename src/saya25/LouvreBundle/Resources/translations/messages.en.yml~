@@ -85,5 +85,10 @@ Confirmation: Confirmation
 Réessayer: Retry
 'Effectuer une autre commande ?': 'Make another order ?'
 'Un tarif': 'A rate'
-nom: 'name'
-prenom: 'FirstName'
+status: Ticket
+nom: Name
+prenom: 'First name'
+pays: Country
+dateNaissance: 'Birth date'
+tarifReduit: 'Reduced price'
+Ajouter: Add

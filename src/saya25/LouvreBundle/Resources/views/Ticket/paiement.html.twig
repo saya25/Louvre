@@ -40,7 +40,7 @@
                                 <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
                                 <p> {{'Billet :'|trans}}{{ billet.tarif }} </p>
                                 <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
-                                {% if billet.tarifReduit  %}
+                                {% if billet.tarifReduit and billet.tarif != "enfant" and billet.tarif !="gratuit"%}
                                     <p><b>{{'Ce tarif exige la présentation d\'un justificatif'|trans}}</b></p>
                                     {%  endif %}
                             {% elseif billet.status == 0 %}
@@ -48,7 +48,7 @@
                                 <p>  {{ billet.prenom }} {{ billet.nom }} </p>
                                 <p>  {{'Billet :'|trans}}{{ billet.tarif }} </p>
                                 <p>  {{'Prix :'|trans}} {{ billet.prix }} € </p>
-                                {% if billet.tarifReduit  %}
+                                {% if billet.tarifReduit and billet.tarif != "enfant" and billet.tarif !="gratuit"%}
                                     <p><b>{{'Ce tarif exige la présentation d\'un justificatif'|trans}}</b></p>
                                 {%  endif %}
                             {% endif %}
