@@ -18,15 +18,17 @@
                     {% set commande = app.session.get('commande') %}
                     {% if commande.getBillet() is defined %}
                         {% for billet in commande.getBillet() %}
-                            {% if billet.status == 1 %}
+                            {% if billet.status == 1  %}
                                 <p class="journee">{{'Billet journée'|trans}}</p>
                                 <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
                                 <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
+                                <script src="{{ asset('bundles/saya25Louvre/js/journee.js') }}"></script>
                             {% elseif billet.status == 0 %}
                                 <p class="demiJournee">{{'Billet demi-journée'|trans}} </p>
                                 <p>  {{ billet.prenom }} {{ billet.nom }} </p>
                                 <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
-                            {% endif %}
+                                <script src="{{ asset('bundles/saya25Louvre/js/demijournee.js') }}"></script>
+                        {% endif %}
                         {% endfor %}
                         <p> <a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs">{{'Supprimer le(s) billet(s)'|trans}} </a></p>
                     {% endif %}
@@ -35,53 +37,5 @@
             <br />
             <br />
         </div>
-        <script>
-            $(document).ready(function() {
-
-
-                $('#saya25_louvrebundle_commande_dateEntree').attr('readonly', true);
-
-                var disableddates = ["01-05-2017", "01-11-2017", "25-12-2017"];
-
-                //bloquer jour fériés
-                function DisableSpecificDates(date) {
-                    var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
-                    return [disableddates.indexOf(string) == -1];
-                }
-
-                //bloquer dimanche
-                $("#saya25_louvrebundle_commande_dateEntree").datepicker({
-                    beforeShowDay: function(date) {
-                        var day = date.getDay();
-                        return [(day != 0), ''];
-                    }
-                });
-
-                $( function() {
-                    $( "#saya25_louvrebundle_commande_dateEntree" ).datepicker();
-                    $.datepicker.regional['fr'] = {
-                        closeText: 'Fermer',
-                        prevText: 'Précédent',
-                        nextText: 'Suivant',
-                        currentText: 'Aujourd\'hui',
-                        monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-                        monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-                        dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-                        dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-                        dayNamesMin: ['D','L','M','M','J','V','S'],
-                        weekHeader: 'Sem.',
-                        dateFormat: 'dd/mm/yy',
-                        firstDay: 1,
-                        isRTL: false,
-                        showMonthAfterYear: false,
-                        beforeShowDay: DisableSpecificDates,
-                        minDate: 0,
-                        yearSuffix: ''},
-                        $.datepicker.setDefaults($.datepicker.regional['fr']);
-                });
-            });
-        </script>
     </div>
 {% endblock %}
-
-    

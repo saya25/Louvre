@@ -16,6 +16,7 @@ class Price
         $billet = $commande->getBillet();
         foreach($billet as $blt) {
 
+        	$blt->setCommande($commande);	
             $datenaissance = $blt->getdateNaissance();
 
             $dateInterval = $datenaissance->diff(new\DateTime());
