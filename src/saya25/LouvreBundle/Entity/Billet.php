@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
 
-    CONST TARIF_GRAUTIT ='gratuit';
+    CONST TARIF_GRATUIT ='gratuit';
     CONST TARIF_ENFANT = 'enfant';
     CONST TARIF_NORMAL = 'normal';
     CONST TARIF_SENIOR = 'sénior';

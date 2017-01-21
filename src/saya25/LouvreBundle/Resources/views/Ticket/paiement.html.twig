@@ -151,7 +151,7 @@
                     {% endif %}
                     <p><b>{{'Prix total de la commande :'|trans}} {{ commande.total }} € </b></p>
                     <p>{{'Date de la visite'|trans}} </p> {{ commande.dateEntree|date("m/d/Y") }}
-                    <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs">{{'Annuler la commande'|trans}} </a></p>
+                    <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs deleteAllBillets">{{'Annuler la commande'|trans}} </a></p>
                 </div>
             </div>
         </div>

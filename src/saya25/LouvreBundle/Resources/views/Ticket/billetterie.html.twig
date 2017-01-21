@@ -31,8 +31,8 @@
                             <p>{{ billet.dateNaissance|date("m/d/Y") }}</p>
                         {% endif %}
                     {% endfor %}
-                    <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs">{{'Supprimer le(s) billet(s)'|trans}} </a></p>
-                    <a href=" {{ path('saya25_louvre_commande') }}" class="btn btn-primary glyphicon glyphicon-arrow-right">{{'Poursuivre'|trans}} </a>
+                    <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs deleteAllBillets">{{'Supprimer le(s) billet(s)'|trans}} </a></p>
+                    <a href=" {{ path('saya25_louvre_commande') }}" class="btn btn-primary glyphicon glyphicon-arrow-right poursuivre">{{'Poursuivre'|trans}} </a>
                 {% endif %}
             </div>
         </div>

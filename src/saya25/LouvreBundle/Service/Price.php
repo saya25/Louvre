@@ -16,13 +16,13 @@ class Price
         $billet = $commande->getBillet();
         foreach($billet as $blt) {
 
-        	$blt->setCommande($commande);	
+            $blt->setCommande($commande);
             $datenaissance = $blt->getdateNaissance();
 
             $dateInterval = $datenaissance->diff(new\DateTime());
 
             if ($dateInterval->y < 4) {
-                $blt->setTarif(BILLET::TARIF_GRAUTIT);
+                $blt->setTarif(BILLET::TARIF_GRATUIT);
                 $blt->setPrix(BILLET::BILLET_GRATUIT);
             } else if ($dateInterval->y < 12) {
                 $blt->setTarif(BILLET::TARIF_ENFANT);

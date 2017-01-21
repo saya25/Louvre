@@ -14,9 +14,6 @@ use saya25\LouvreBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
-
-
-
 /**
  * Created by PhpStorm.
  * User: clement
@@ -64,9 +61,16 @@ class Back
     }
 
 
+    public function getTicketsSaved()
+    {
+        return count($this->doctrine->getRepository('saya25LouvreBundle:Billet')->findAll());
+    }
+
+
 
     public function startCommande(Request $request)
     {
+
         $commande = new Commande();
 
         $form = $this->form->create(CommandeBilletType::class, $commande);

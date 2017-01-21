@@ -6,36 +6,45 @@
     <div class="container">
     <div class="row">
         <div class="col-sm-3 col-xs-12"> <img id="logo" src="{{ asset('bundles/saya25Louvre/images/logo.png') }}"> </div>
-        <div class="col-sm-9 col-xs-12"> <h1 class="titleBienvenue">{{'Billetterie officielle musée du Louvre'|trans}}</h1></div>
+        <div class="col-sm-8 col-xs-12"> <h1 class="titleBienvenue">{{'Billetterie officielle musée du Louvre'|trans}}</h1></div>
+        <div id="langues" class="col-sm-1">
+            <div class="row">
+            <a href="{{ path('saya25_louvre_accueil',{_locale:'en'}) }}" ><img id="langueEn" src="{{ asset('bundles/saya25Louvre/images/en.png') }}"></a>
+            <a href="{{ path('saya25_louvre_accueil',{_locale:'fr'}) }}" ><img id="langueFr" src="{{ asset('bundles/saya25Louvre/images/fr.png') }}"></a>
+            </div>
+        </div>
             <div class="row">
                 <div class="col-sm-8 col-xs-12"> <a href="{{ path('saya25_louvre_billetterie') }}", class="btn btn-primary btn-lg",  id="bouton_Reservation">{{'Réservation de billets'|trans}}</a> </div>
             </div>
         <div class="row">
-            <div class="col-sm-6 col-xs-12"> <h1 class="titleHome">{{'Tarif/Horaire'|trans}} </h1>
+            <div class="col-sm-5 col-xs-12"> <h1 class="titleHome">{{'Tarif/Horaire'|trans}} </h1>
             <div class="row">
                 <div class="col-sm-12" id="horaireAccueil">
-                    <p>Le musée est ouvert tous les jours de 09h à 18h sauf le mardi et (fermé les 1er mai, 1er novembre et 25 décembre).</p>
+                    <p>{% trans %}Le musée est ouvert tous les jours de 09h à 18h sauf le mardi, fermé les jours fériés.{% endtrans %}</p>
                     <p id="tarif">{{'Le musée propose plusieurs types de tarifs :'|trans}}</p>
-                    <p>{{'Un tarif'|trans}} <strong>{{'« normal »'|trans}}</strong> {{'à partir de 12 ans à 16 €'|trans}} </p>
-                    <p>{{'Un tarif'|trans}} <strong>{{'« enfant »'|trans}}</strong> {% trans %}à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée est gratuite pour les enfants de moins de 4 ans){% endtrans %}</p>
-                    <p>{{'Un tarif'|trans}} <strong>{{'« sénior »'|trans}}</strong> {{'à partir de 60 ans pour 12  €'|trans}}</p>
-                    <p>{{'Un tarif'|trans}} <strong>{{'« réduit* »'|trans}}</strong> {% trans %}de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…){% endtrans %}</p>
+                    <ul>
+                    <li>{{'Un tarif'|trans}} <strong>{{'« normal »'|trans}}</strong> {{'à partir de 12 ans à 16 €'|trans}} </li>
+                    <li>{{'Un tarif'|trans}} <strong>{{'« enfant »'|trans}}</strong> {% trans %}à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée est gratuite pour les enfants de moins de 4 ans){% endtrans %}</li>
+                    <li>{{'Un tarif'|trans}} <strong>{{'« sénior »'|trans}}</strong> {{'à partir de 60 ans pour 12  €'|trans}}</li>
+                    <li>{{'Un tarif'|trans}} <strong>{{'« réduit* »'|trans}}</strong> {% trans %}de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…){% endtrans %}</li>
+                    </ul>
                     <p> {% trans %}*Ce tarif exige La présentation d'un justificatif pour accéder au musée. {% endtrans %}</p>
                 </div>
             </div>
             </div>
-            <div class="col-sm-6 col-xs-12"> <h1 class="titleHome">{{'Billet'|trans}}</h1>
+            <div class="col-sm-5  col-sm-offset-2  col-xs-12"> <h1 class="titleHome">{{'Billet'|trans}}</h1>
             <div class="row" id="ok">
                 <div class="col-sm-12" id="billetAccueil">
-            <p>Le musée du louvre propose 2 types de billets </p>
-            <h3>Billet journée</h3>
-            <p>de 09h à 18h</p>
-            <h3>Billet demi-journée</h3>
-            <p>de 14h à 18h </p>
+                    <h4>{{'Le musée du louvre propose 2 types de billets :'|trans}} </h4>
+                    <h3>{{'Billet journée'|trans}}</h3>
+                    <p>{{'valable de 09h à 18h'|trans}}</p>
+                    <hr/>
+                    <h3>{{'Billet demi-journée'|trans}}</h3>
+                    <p>{{'valable de 14h à 18h'|trans}} </p>
+                </div>
             </div>
             </div>
-    </div>
-    </div>
+        </div>
     </div>
     {{ include("saya25LouvreBundle:Ticket:piedDePage.html.twig") }}
 {% endblock %}

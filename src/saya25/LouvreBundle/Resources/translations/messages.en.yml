@@ -44,8 +44,8 @@ OVH: OVH
 Tél: phone
 'Billetterie officielle musée du Louvre': 'Official Ticket Museum of the Louvre'
 'Réservation de billets': 'Ticket Booking'
-Tarif/Horaire: Hourly/rate
-'Récupérer un billet': 'Recover a ticket'
+Tarif: Rate
+Horaire: Hourly
 'Le musée propose plusieurs types de tarifs :': 'The museum offers several types of fares:'
 '« normal »': '« normal »'
 'à partir de 12 ans à 16 €': 'from 12 years old to 16 €'
@@ -55,7 +55,7 @@ Tarif/Horaire: Hourly/rate
 'à partir de 60 ans pour 12  €': 'from 60 years old for 12 €'
 '« réduit* »': '« reduced* »'
 'de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service du Ministère de la Culture, militaire…)': 'Of 10 € granted under certain conditions (student, employee of the museum, a department of the Ministry of Culture, military ...)'
-'*Ce tarif exige La présentation d''un justificatif pour accéder au musée.': ' This price requires The presentation of a proof to access the museum.'
+'*Ce tarif exige La présentation d''un justificatif pour accéder au musée.': '*This price requires The presentation of a proof to access the museum.'
 Contactez-nous: 'Contact us'
 'Mentions légales': 'Legal Notice'
 'Détail de la commande': 'Detail of the order'
@@ -92,3 +92,9 @@ pays: Country
 dateNaissance: 'Birth date'
 tarifReduit: 'Reduced price'
 Ajouter: Add
+Tarif/Horaire: Hourly/Rate
+'Le musée est ouvert tous les jours de 09h à 18h sauf le mardi, fermé les jours fériés.': 'The museum is open every day from 9am to 6pm except Tuesdays, closed on public holidays.'
+Billet: Ticket
+'Le musée du louvre propose 2 types de billets :': 'The Musée du Louvre offers 2 types of tickets :'
+'valable de 09h à 18h': 'Valid from 9am to 6pm'
+'valable de 14h à 18h': 'Valid from 2pm to 6pm'
