@@ -3,8 +3,6 @@
 namespace saya25\LouvreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use saya25\LouvreBundle\Entity\Billet;
-use saya25\LouvreBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -25,6 +23,7 @@ class TicketController extends Controller
         $form = $this->get("core.back")->startCommande($request);
 
         return $this->render('saya25LouvreBundle:Ticket:billetterie.html.twig', array(
+
             'form' => $form->createView(),
 
         ));
@@ -52,6 +51,7 @@ class TicketController extends Controller
     public function paiementAction(Request $request)
     {
         $commande = $this->get("core.back")->paiementCommande();
+        $ticket = $this->get('core.back')->getAllTicketsByDate();
 
         if ($request->isMethod('POST')) {
             $token = $request->get('stripeToken');
@@ -76,6 +76,7 @@ class TicketController extends Controller
         return $this->render('saya25LouvreBundle:Ticket:paiement.html.twig', array(
             'commande'  => $commande,
             'public_key' =>  $this->getParameter("public_key"),
+            'ticket'    => $ticket,
         ));
     }
 

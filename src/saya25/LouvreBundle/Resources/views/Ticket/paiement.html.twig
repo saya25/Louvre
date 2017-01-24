@@ -32,7 +32,7 @@
             <div class="col-sm-6"><h1 class="titlePaiement">{{'Récapitulatif'|trans}}</h1> </div>
             <div class="row">
                 <div class="col-sm-offset-7"><img class="louvreImage" src="{{ asset('bundles/saya25Louvre/images/louvre.jpg') }}">
-                    {% set commande = app.session.get('commande') %}
+                    {%  set commande = app.session.get('commande') %}
                     {% if commande.getBillet() is defined %}
                         {% for billet in commande.getBillet() %}
                             {% if billet.status == 1 %}
@@ -150,7 +150,7 @@
                          {% endfor %}
                     {% endif %}
                     <p><b>{{'Prix total de la commande :'|trans}} {{ commande.total }} € </b></p>
-                    <p>{{'Date de la visite'|trans}} </p> {{ commande.dateEntree|date("m/d/Y") }}
+                    <p>{{'Date de la visite'|trans}} </p> {{ commande.dateEntree|date("d/m/Y") }}
                     <p><a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs deleteAllBillets">{{'Annuler la commande'|trans}} </a></p>
                 </div>
             </div>

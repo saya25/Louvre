@@ -60,7 +60,7 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateEntree", type="datetime", nullable=true)
+     * @ORM\Column(name="dateEntree", type="date", nullable=true)
      */
     private $dateEntree;
 
@@ -210,11 +210,11 @@ class Commande
      *
      * @return Commande
      */
-    public function setNumeroReservation()
+    public function setNumeroReservation($numeroReservation)
     {
-        $numeroReservation = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz123456789"), 0, rand(12,17));
+        $this->numeroReservation = $numeroReservation;
 
-        return $numeroReservation;
+        return $this;
     }
 
     /**

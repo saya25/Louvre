@@ -12,7 +12,7 @@ use saya25\LouvreBundle\Form\CommandeType;
 use saya25\LouvreBundle\Form\Billet;
 use saya25\LouvreBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Created by PhpStorm.
@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class Back
 {
-
     /**
      * @var EntityManager
      */
@@ -38,12 +37,10 @@ class Back
      */
     protected $session;
 
-
     /**
      * @var Price
      */
     protected $price;
-
 
     /**
      * @var Router
@@ -61,16 +58,15 @@ class Back
     }
 
 
-    public function getTicketsSaved()
+    public function getAllTicketsByDate()
     {
-        return count($this->doctrine->getRepository('saya25LouvreBundle:Billet')->findAll());
+        return count($this->doctrine->getRepository('saya25LouvreBundle:Billet')->getBilletWithCommandeByDate());
     }
 
 
 
     public function startCommande(Request $request)
     {
-
         $commande = new Commande();
 
         $form = $this->form->create(CommandeBilletType::class, $commande);
@@ -81,13 +77,24 @@ class Back
             $this->session->set('commande', $data);
         }
         return $form;
-
     }
 
 
     public function coordonneesCommande(Request $request)
     {
         $commande= $this->session->get('commande');
+
+        try {
+            if ($commande == null) {
+                throw new Exception('La commande ne peut pas être vide !');
+            }
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+            $response = new RedirectResponse('billetterie');
+            $response->send();
+        }
         $form = $this->form->create(CommandeType::class, $commande);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -96,7 +103,6 @@ class Back
 
                 $response = new RedirectResponse('paiement');
                 $response->send();
-
         }
        return $form;
     }
@@ -105,6 +111,18 @@ class Back
     {
         $commande = $this->session->get('commande');
 
+        try {
+            if ($this->getAllTicketsByDate() + count($commande->getBillet()) > 1000) {
+                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
+                $response->send();
+                $this->session->getFlashBag()->add(
+                    'danger',
+                    'La commande ne peut être acceptée à cette date afin d\'éviter de surcharger le musée. Veuillez choisir une autre date.'
+                );
+            }
+        } catch (\InvalidArgumentException $exception) {
+            $exception->getMessage();
+        }
         return $commande;
     }
 
@@ -114,9 +132,6 @@ class Back
 
         return $commande;
     }
-
-
-
 }
 
 

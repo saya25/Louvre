@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Commande vide : {{ status_text }}</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1 style="padding-top:-10px"></h1>
+    <div>
+     <h2>La commande actuelle ne contient pas de billet(s)</h2>
+     <p><a href="{{ path('saya25_louvre_billetterie')}}" class="btn btn-info"> Ajouter des billets </a></p>
+        <h2>Retour à l'accueil</p>
+      <p><a href="{{ path('saya25_louvre_accueil')}}" class="btn btn-info"> Accueil</a></p>
+    </div>
+  </body>
+</html>

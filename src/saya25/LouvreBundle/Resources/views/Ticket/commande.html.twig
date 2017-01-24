@@ -33,6 +33,9 @@
                         <p> <a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs deleteAllBillets">{{'Supprimer le(s) billet(s)'|trans}} </a></p>
                     {% endif %}
                 </div>
+                {% for messageFlash in app.session.flashbag.get('danger') %}
+                    <p> {{ messageFlash }}</p>
+                {% endfor %}
             </div>
             <br />
             <br />

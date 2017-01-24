@@ -88,7 +88,7 @@ class Billet
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="prix", type="integer")
      */
     private $prix;
 

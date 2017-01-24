@@ -4,6 +4,7 @@ namespace saya25\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Billet
  *
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
 
-    CONST TARIF_GRAUTIT ='gratuit';
+    CONST TARIF_GRATUIT ='gratuit';
     CONST TARIF_ENFANT = 'enfant';
     CONST TARIF_NORMAL = 'normal';
     CONST TARIF_SENIOR = 'sénior';
@@ -75,15 +76,6 @@ class Billet
      */
     private $dateNaissance;
 
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateEntree", type="datetime", nullable=true)
-     */
-    private $dateEntree;
-
-
     /**
      * @var boolean
      *
@@ -96,7 +88,7 @@ class Billet
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="prix", type="integer")
      */
     private $prix;
 

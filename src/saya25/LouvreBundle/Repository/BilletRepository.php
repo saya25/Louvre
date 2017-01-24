@@ -10,4 +10,17 @@ namespace saya25\LouvreBundle\Repository;
  */
 class BilletRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getBilletWithCommandeByDate()
+    {
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.commande', 'commande')
+            ->addSelect('commande')
+            ->where('commande.dateEntree = :date')
+            ->setParameter('date', new \DateTime('now'))
+            ->getQuery()
+            ->getResult();
+
+    }
+
+
 }
