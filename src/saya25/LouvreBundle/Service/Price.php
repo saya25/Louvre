@@ -42,10 +42,10 @@ class Price
                     $blt->setPrix(BILLET::BILLET_REDUIT);
                 }
             }
-
             // Tarif si demi-journée divisé par 2
-            if ($blt->getStatus() === 'demi-journée') {
-                $blt->setPrix($blt->getPrix() / 2);
+            if ($dateInterval->y >12 && $dateInterval->y <60 && $blt->getStatus() === false) {
+                $blt->setTarif(BILLET::TARIF_NORMAL);
+                $blt->setPrix(BILLET::BILLET_NORMAL /2);
             }
 
             $this->prixCommande += $blt->getPrix();
