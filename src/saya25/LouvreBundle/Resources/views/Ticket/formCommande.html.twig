@@ -1,14 +1,5 @@
-{% extends "saya25LouvreBundle::layout.html.twig" %}
-    {% block saya25blog_body %}
-
-        <h3 class="titleCoordonnees">{{'Vos informations personnelles'|trans}} </h3>
-        <div class="well">
-            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-            {{ form_row(form.dateEntree) }}
-            {{ form_row(form.nom) }}
-            {{ form_row(form.prenom) }}
-            {{ form_row(form.email) }}
-            <button type="submit" class="btn btn-primary" id="poursuivreCommande">{{'Poursuivre'|trans}} </button>
-            {{ form_end (form) }}
-        </div>
-    {% endblock %}
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
