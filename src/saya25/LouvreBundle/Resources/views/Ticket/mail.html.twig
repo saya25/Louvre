@@ -1,0 +1,73 @@
+{# src/saya25/LouvreBundle/Resources/views/Advert/mail.html.twig #}
+<div class="container">
+    {%  set commande = app.session.get('commande') %}
+                    {% if commande.getBillet() is defined %}
+                        <a href="http://images.google.fr/imgres?imgurl=http%3A%2F%2Fblog.shanegraphique.com%2Fwp-content%2Fuploads%2F2016%2F04%2F011.jpg&imgrefurl=http%3A%2F%2Fblog.shanegraphique.com%2Flogomuse-du-louvres%2F&h=540&w=723&tbnid=ImgYB2dpS1gXXM%3A&vet=1&docid=sghNp__eJFAlIM&ei=K1KKWIKsNYL5avits5gN&tbm=isch&iact=rc&uact=3&dur=94&page=0&start=0&ndsp=19&ved=0ahUKEwjC7dfiyeDRAhWCvBoKHfjWDNMQMwggKAYwBg&bih=662&biw=1366"></a>
+                        <p>Madame, Monsieur</p>
+                        <p>Nous vous remercions pour votre commande. Votre commande porte le numéro : {{ commande.numeroReservation }}</p>
+                        <p>Vous trouverez ci-dessous un récapitulatif de votre commande</p>
+                        {% for billet in commande.getBillet() %}
+                            {% if billet.status == 1 %}
+                                {% if billet.tarif == "gratuit" %}
+                                    <p class="journee">{{'Billet journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% endif %}
+                                {% if billet.tarif == "enfant" %}
+                                    <p class="journee">{{'Billet journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% endif %}
+                                {% if billet.tarif == "sénior" %}
+                                    <p class="journee">{{'Billet journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% endif %}
+                                {% if billet.tarif == "normal" %}
+                                    <p class="journee">{{'Billet journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% endif %}
+                                {% if billet.tarifReduit and billet.tarif != "enfant" and billet.tarif !="gratuit" %}
+                                    <p class="journee">{{'Billet journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                    <p><b>{{'Ce tarif exige la présentation d\'un justificatif'|trans}}</b></p>
+                                {% endif %}
+                            {% endif %}
+                            {% if billet.status == 0 %}
+                                {% if billet.tarif == "gratuit" %}
+                                    <p class="demiJournee">{{'Billet demi-journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% endif %}
+                                {% if billet.tarif == "enfant" %}
+                                    <p class="demiJournee">{{'Billet demi-journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% endif %}
+                                {% if billet.tarif == "sénior" %}
+                                    <p class="demiJournee">{{'Billet demi-journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                {% endif %}
+                                {% if billet.tarif == "normal" %}
+                                    <p class="demiJournee">{{'Billet demi-journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix  }} € </p>
+                                {% endif %}
+                                {% if billet.tarifReduit and billet.tarif != "enfant" and billet.tarif !="gratuit" and billet.tarif != "normal"%}
+                                    <p class="demiJournee">{{'Billet demi-journée'|trans}}</p>
+                                    <p>  {{ billet.prenom }} {{ billet.nom }}  </p>
+                                    <p>{{'Prix :'|trans}}{{ billet.prix }} € </p>
+                                    <p><b>{{'Ce tariff exige la présentation d\'un justificatif'|trans}}</b></p>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <p>Les billets journée sont valables de 09h à 18h</p>
+                        <p>Les billets demi-journée sont valables de 14h à 18h</p>
+                        <p><b>{{'Prix total de la commande :'|trans}} {{ commande.total }} € </b></p>
+                        <p>{{'Date de la visite'|trans}} </p> {{ commande.dateEntree|date("d/m/Y") }}
+                    {% endif %}
+</div>
+
