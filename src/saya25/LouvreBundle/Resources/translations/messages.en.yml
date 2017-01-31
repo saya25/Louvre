@@ -85,12 +85,11 @@ Confirmation: Confirmation
 Réessayer: Retry
 'Effectuer une autre commande ?': 'Make another order ?'
 'Un tarif': 'A rate'
-status: Ticket
-nom: Name
-prenom: 'First name'
-pays: Country
-dateNaissance: 'Birth date'
-tarifReduit: 'Reduced price'
+Nom: Name
+Prénom: 'First name'
+Pays: Country
+Date de naissance: 'Birth date'
+Tarif réduit: 'Reduced price'
 Ajouter: Add
 Tarif/Horaire: Hourly/Rate
 'Le musée est ouvert tous les jours de 09h à 18h sauf le mardi, fermé les jours fériés.': 'The museum is open every day from 9am to 6pm except Tuesdays, closed on public holidays.'
@@ -98,3 +97,7 @@ Billet: Ticket
 'Le musée du louvre propose 2 types de billets :': 'The Musée du Louvre offers 2 types of tickets :'
 'valable de 09h à 18h': 'Valid from 9am to 6pm'
 'valable de 14h à 18h': 'Valid from 2pm to 6pm'
+status: Ticket
+Journée : 'Day'
+Demi-Journée : 'Half-day'
+Billet: 'Ticket'

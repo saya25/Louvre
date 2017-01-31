@@ -29,14 +29,14 @@ class BilletType extends AbstractType
     {
         $builder
             ->add('status', ChoiceType::class, array(
-                'label_format'  => '%name%',
+                'label'  => 'Billet',
                 'choices'   => array(
                     'Journée'  =>  true,
                     'Demi-Journée'  => false,
                 ),
             ))
             ->add('nom', TextType::class, array(
-                'label_format'  => '%name%',
+                'label'  => 'Nom',
                 'constraints'   => array(
                     new NotBlank(),
                     new Type('string'),
@@ -49,7 +49,7 @@ class BilletType extends AbstractType
                 ),
             ))
             ->add('prenom', TextType::class, array(
-                'label_format'  => '%name%',
+                'label' => 'Prénom',
                 'constraints'   => array(
                     new NotBlank(),
                     new Type('string'),
@@ -62,13 +62,13 @@ class BilletType extends AbstractType
                 ),
             ))
             ->add('pays',           CountryType::class, array(
-                'label_format'  => '%name%',
+                'label'  => 'Pays',
             ))
             ->add('dateNaissance',  BirthdayType::class, array(
-                'label_format'  => '%name%',
+                'label'  => 'Date de naissance',
             ))
             ->add('tarifReduit',    CheckboxType::class, array(
-                'label_format'  => '%name%',
+                'label'  => 'Tarif réduit',
                     'required'  => false,
             ))
             ->add('Ajouter',        SubmitType::class, array(
