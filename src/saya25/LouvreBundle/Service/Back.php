@@ -111,13 +111,26 @@ class Back
     {
         $commande = $this->session->get('commande');
 
+
         try {
-            if ($this->getAllTicketsByDate() + count($commande->getBillet()) > 1000) {
+            if ($commande == null) {
+                throw new Exception('La commande ne peut pas être vide !');
+            }
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+            $response = new RedirectResponse('/louvre2/web/app_dev.php/en/louvre/billetterie');
+            $response->send();
+        }
+
+        try {
+            if ($this->getAllTicketsByDate() + count($commande->getBillet()) > 1) {
                 $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
                 $response->send();
                 $this->session->getFlashBag()->add(
                     'danger',
-                    'La commande ne peut être acceptée à cette date afin d\'éviter de surcharger le musée. Veuillez choisir une autre date.'
+                    'La commande ne peut être acceptée à cette date afin d\'éviter de surcharger le musée (1000 billets ont été vendu.)'
                 );
             }
         } catch (\InvalidArgumentException $exception) {

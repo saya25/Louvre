@@ -30,6 +30,11 @@
                                 <script src="{{ asset('bundles/saya25Louvre/js/demijournee.js') }}"></script>
                             {% endif %}
                         {% endfor %}
+                        {% for billet in commande.getBillet() %}
+                            {% if billet.status(1)|length > 0 and loop.last ==0 %}
+                                <script src="{{ asset('bundles/saya25Louvre/js/journee.js') }}"></script>
+                            {% endif %}
+                        {% endfor %}
                         <p> <a href=" {{path('saya25_louvre_deletebillet') }}" class="btn btn-danger btn-xs deleteAllBillets">{{'Supprimer le(s) billet(s)'|trans}} </a></p>
                     {% endif %}
                 </div>
