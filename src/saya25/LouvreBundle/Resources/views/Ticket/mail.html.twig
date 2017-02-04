@@ -64,8 +64,8 @@
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
-                        <p>{%  trans %}Day tickets are valid from 9am to 6pm {%  endtrans %}</p>
-                        <p>{%  trans %}Half-day tickets are valid from 2 pm to 6 pm {% endtrans %}</p>
+                        <p>{%  trans %}Les billets journée sont valables de 09h à 18h {%  endtrans %}</p>
+                        <p>{%  trans %}Les billets demi-journée sont valables de 14h à 18h{% endtrans %}</p>
                         <p><b>{{'Prix total de la commande :'|trans}} {{ commande.total }} € </b></p>
                         <p>{{'Date de la visite'|trans}} </p> {{ commande.dateEntree|date("d/m/Y") }}
                     {% endif %}

@@ -57,13 +57,10 @@ class Back
         $this->router = $router;
     }
 
-
     public function getAllTicketsByDate()
     {
         return count($this->doctrine->getRepository('saya25LouvreBundle:Billet')->getBilletWithCommandeByDate());
     }
-
-
 
     public function startCommande(Request $request)
     {
@@ -111,26 +108,24 @@ class Back
     {
         $commande = $this->session->get('commande');
 
-
         try {
             if ($commande == null) {
-                throw new Exception('La commande ne peut pas être vide !');
+                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/billetterie');
+                $response->send();
             }
-        }
-        catch(Exception $e)
-        {
-            echo $e->getMessage();
-            $response = new RedirectResponse('/louvre2/web/app_dev.php/en/louvre/billetterie');
-            $response->send();
-        }
+            $dateEntree = $commande->getDateEntree();
 
-        try {
-            if ($this->getAllTicketsByDate() + count($commande->getBillet()) > 1) {
+            if (is_null($dateEntree)) {
+                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
+                $response->send();
+            }
+
+            if ($this->getAllTicketsByDate() + count($commande->getBillet()) > 1000) {
                 $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
                 $response->send();
                 $this->session->getFlashBag()->add(
                     'danger',
-                    'La commande ne peut être acceptée à cette date afin d\'éviter de surcharger le musée (1000 billets ont été vendu.)'
+                    'La commande ne peut être acceptée à cette date afin d\'éviter de surcharger le musée. (1000 billets ont été vendus)'
                 );
             }
         } catch (\InvalidArgumentException $exception) {
@@ -142,6 +137,24 @@ class Back
     public function confirmationCommande()
     {
         $commande = $this->session->get('commande');
+        try {
+            if ($commande == null) {
+                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/billetterie');
+                $response->send();
+            }
+            $dateEntree = $commande->getDateEntree();
+
+            if (is_null($dateEntree)) {
+                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/billetterie');
+                $response->send();
+            }
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+            $response = new RedirectResponse('/louvre2/web/app_dev.php/en/louvre/billetterie');
+            $response->send();
+        }
 
         return $commande;
     }

@@ -26,14 +26,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="messages.en.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="messages.en.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/translations/messages.en.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1267">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <marker date="1486153265117" expanded="true" signature="11555:11558" ph="Valid from..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/bundles/saya25Louvre/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="523">
+              <caret line="276" column="1" lean-forward="true" selection-start-line="276" selection-start-column="1" selection-end-line="276" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,9 +99,9 @@
         <option value="$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/views/Ticket/piedDePage.html.twig" />
         <option value="$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/views/Ticket/formCommande.html.twig" />
-        <option value="$PROJECT_DIR$/web/bundles/saya25Louvre/css/style.css" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/translations/messages.en.yml" />
+        <option value="$PROJECT_DIR$/web/bundles/saya25Louvre/css/style.css" />
       </list>
     </option>
   </component>
@@ -588,11 +598,12 @@
       <workItem from="1485458376784" duration="31000" />
       <workItem from="1485458563438" duration="620000" />
       <workItem from="1486153345941" duration="16000" />
+      <workItem from="1486155858794" duration="206000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173208000" />
+    <option name="totallyTimeSpent" value="173414000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -760,13 +771,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="26" lean-forward="false" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/views/layout.html.twig" />
     <entry file="file://$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/views/Ticket/deletebillet.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -918,14 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/bundles/saya25Louvre/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/saya25/LouvreBundle/Service/Price.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -936,11 +933,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/saya25/LouvreBundle/Resources/translations/messages.en.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1267">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <marker date="1486153265117" expanded="true" signature="11555:11558" ph="Valid from..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/bundles/saya25Louvre/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="276" column="1" lean-forward="true" selection-start-line="276" selection-start-column="1" selection-end-line="276" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
