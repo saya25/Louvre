@@ -19,6 +19,17 @@ class BilletRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('date', new \DateTime('now'))
             ->getQuery()
             ->getResult();
+    }
+
+    public function getBilletWithCommandeDate($date){
+
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.commande', 'commande')
+            ->addSelect('commande')
+            ->where('commande.dateEntree = :date')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getResult();
 
     }
 

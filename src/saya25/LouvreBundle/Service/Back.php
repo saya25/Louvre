@@ -120,7 +120,17 @@ class Back
                 $response->send();
             }
 
-            if ($this->getAllTicketsByDate() + count($commande->getBillet()) > 1000) {
+            if ($this->getAllTicketsByDate() + count($commande->getBillet()) >= 1000) {
+                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
+                $response->send();
+                $this->session->getFlashBag()->add(
+                    'danger',
+                    'La commande ne peut être acceptée à cette date afin d\'éviter de surcharger le musée. (1000 billets ont été vendus)'
+                );
+
+            }
+            if (count($this->doctrine->getRepository('saya25LouvreBundle:Billet')->getBilletWithCommandeDate($commande->getDateEntree()))>=1000 )
+            {
                 $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
                 $response->send();
                 $this->session->getFlashBag()->add(
