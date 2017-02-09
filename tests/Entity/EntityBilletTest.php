@@ -1,9 +1,11 @@
 <?php
 
+namespace tests\Entity;
 
 use saya25\LouvreBundle\Entity\Billet;
+use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
-class testEntityBillet extends PHPUNIT_Framework_TestCase
+class EntityBilletTest extends TestCase
 {
 
     public function testSetNomBillet()

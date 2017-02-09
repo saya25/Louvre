@@ -14,4 +14,4 @@ services:
 
     app.mail:
         class: saya25\LouvreBundle\Service\Mail
-        arguments: ["@mailer", "@twig"]
+        arguments: ["@session", "@mailer", "@twig"]

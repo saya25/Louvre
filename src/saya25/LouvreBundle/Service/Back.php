@@ -96,32 +96,31 @@ class Back
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-                $this->price->tarifBillet($commande);
+            $this->price->tarifBillet($commande);
 
-                $response = new RedirectResponse('paiement');
-                $response->send();
+            $response = new RedirectResponse('paiement');
+            $response->send();
         }
-       return $form;
+        return $form;
     }
 
     public function paiementCommande()
     {
         $commande = $this->session->get('commande');
-
         try {
             if ($commande == null) {
-                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/billetterie');
+                $response = new RedirectResponse('billetterie');
                 $response->send();
             }
             $dateEntree = $commande->getDateEntree();
 
             if (is_null($dateEntree)) {
-                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
+                $response = new RedirectResponse('commande');
                 $response->send();
             }
 
             if ($this->getAllTicketsByDate() + count($commande->getBillet()) >= 1000) {
-                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
+                $response = new RedirectResponse('commande');
                 $response->send();
                 $this->session->getFlashBag()->add(
                     'danger',
@@ -131,7 +130,7 @@ class Back
             }
             if (count($this->doctrine->getRepository('saya25LouvreBundle:Billet')->getBilletWithCommandeDate($commande->getDateEntree()))>=1000 )
             {
-                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/commande');
+                $response = new RedirectResponse('commande');
                 $response->send();
                 $this->session->getFlashBag()->add(
                     'danger',
@@ -149,20 +148,20 @@ class Back
         $commande = $this->session->get('commande');
         try {
             if ($commande == null) {
-                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/billetterie');
+                $response = new RedirectResponse('billetterie');
                 $response->send();
             }
             $dateEntree = $commande->getDateEntree();
 
             if (is_null($dateEntree)) {
-                $response = new RedirectResponse('http://localhost/louvre2/web/app_dev.php/fr/louvre/billetterie');
+                $response = new RedirectResponse('billetterie');
                 $response->send();
             }
         }
         catch(Exception $e)
         {
             echo $e->getMessage();
-            $response = new RedirectResponse('/louvre2/web/app_dev.php/en/louvre/billetterie');
+            $response = new RedirectResponse('billetterie');
             $response->send();
         }
 

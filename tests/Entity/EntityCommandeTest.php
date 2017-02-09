@@ -1,8 +1,11 @@
 <?php
 
-use saya25\LouvreBundle\Entity\Commande;
+namespace tests\Entity;
 
-class testEntityCommande extends PHPUNIT_Framework_TestCase
+use saya25\LouvreBundle\Entity\Commande;
+use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+
+class EntityCommandeTest extends TestCase
 {
 
     public function testSetNom()

@@ -38,16 +38,6 @@ class TicketController extends Controller
         ));
     }
 
-    public function deletebilletAction(Request $request)
-    {
-        $session = $request->getSession();
-        $session->getId();
-        $session->clear();
-        return $this->redirectToRoute('saya25_louvre_billetterie');
-    }
-
-
-
     public function paiementAction(Request $request)
     {
         $commande = $this->get("core.back")->paiementCommande();
@@ -68,8 +58,6 @@ class TicketController extends Controller
             $em->persist($commande);
             $em->flush();
 
-            $this->get('app.mail')->sendMail();
-
             return $this->redirectToRoute('saya25_louvre_confirmation');
 
         }
@@ -84,6 +72,7 @@ class TicketController extends Controller
 
     public function confirmationAction()
     {
+        $this->get('app.mail')->sendMail();
         $commande = $this->get("core.back")->confirmationCommande();
 
         return $this->render('saya25LouvreBundle:Ticket:confirmation.html.twig', array(
@@ -101,6 +90,16 @@ class TicketController extends Controller
     {
         return $this->render('saya25LouvreBundle:Ticket:mentionslegales.html.twig');
     }
+
+    public function deletebilletAction(Request $request)
+    {
+        $session = $request->getSession();
+        $session->getId();
+        $session->clear();
+        return $this->redirectToRoute('saya25_louvre_billetterie');
+    }
+
+
 
 }
 
